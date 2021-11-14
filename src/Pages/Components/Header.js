@@ -24,7 +24,7 @@ function Header() {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <div className="container">
                         <div>
-                            <a className="navbar-brand" href="#">
+                            <a className="navbar-brand" href="/testa">
                                 <img src="/Images/Logo.jpg" alt="logo" style={{ height: '100px', width: '100px', borderRadius: '50%' }} />
                             </a>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ function Header() {
                             <div className="collapse navbar-collapse" id="navbarColor03">
                                 <ul className="navbar-nav me-auto">
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="#">Home
+                                        <a className="nav-link active" href="/testb">Home
                                             <span className="visually-hidden">(current)</span>
                                         </a>
                                     </li>
@@ -44,16 +44,16 @@ function Header() {
                                         <a className="nav-link active" href="#product-desc">Products</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="#">Membeship</a>
+                                        <a className="nav-link active" href="/testc">Membeship</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="#">Order</a>
+                                        <a className="nav-link active" href="/testd">Order</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="#">About Us</a>
+                                        <a className="nav-link active" href="/teste">About Us</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="#">Blogs</a>
+                                        <a className="nav-link active" href="/testf">Blogs</a>
                                     </li>
                                 </ul>
                             </div>

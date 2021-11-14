@@ -8,19 +8,19 @@ function Footer() {
                 <div className="row">
                     <div className="col-md-3 pt-3">
                         <h4 className="text-start mb-1"> Terms & Condition</h4>
-                        <p className="text-start mb-0"><a href="#">Privacy Policy</a></p>
-                        <p className="text-start  mb-0"><a href="#">Return and Refund Policy</a></p>
+                        <p className="text-start mb-0"><a href="/test01">Privacy Policy</a></p>
+                        <p className="text-start  mb-0"><a href="/test02">Return and Refund Policy</a></p>
                     </div>
                     <div className="col-md-3 pt-3">
                         <h4 className="text-start mb-1">Customer Support</h4>
-                        <p className="text-start mb-0"><a href="#">Contact Us</a></p>
-                        <p className="text-start mb-0"><a href="#">Online Business Presentation</a></p>
-                        <p className="text-start mb-0"><a href="#">Blogs</a></p>
+                        <p className="text-start mb-0"><a href="/test01">Contact Us</a></p>
+                        <p className="text-start mb-0"><a href="/test02">Online Business Presentation</a></p>
+                        <p className="text-start mb-0"><a href="/test03">Blogs</a></p>
                     </div>
                     <div className="col-md-3 pt-3">
                         <h4 className="text-start mb-1">About Us</h4>
-                        <p className="text-start mb-0"><a href="#">Learn more about One Opti Lifestyle International, OPC</a></p>
-                        <p className="text-start mb-0"><a href="#">Feedback Form</a></p>
+                        <p className="text-start mb-0"><a href="/test011">Learn more about One Opti Lifestyle International, OPC</a></p>
+                        <p className="text-start mb-0"><a href="/test012">Feedback Form</a></p>
                     </div>
                     <div className="col-md-3 pt-3">
                         <h4 className="text-start mb-1">Contact Us</h4>

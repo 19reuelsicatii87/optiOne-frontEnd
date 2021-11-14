@@ -6,7 +6,7 @@ function ProductPromotion() {
             <div className="row">
                 <div className="col-md-5 d-flex align-items-center py-5">
                     <div className="d-flex flex-column">
-                        <img src="/Images/productFeedback.png" style={{ height: '300px', width: '300px' }} ></img>
+                        <img src="/Images/productFeedback.png" style={{ height: '300px', width: '300px' }} alt="productFeedback"></img>
                         <h2 className="text-primary fw-bold">ONE OPTI PRODUCTS.</h2>
                         <p>Miracles of nature that you deserve!.</p>
                         <p>We put together licensed advancements, hand picked ingredients,
@@ -18,7 +18,7 @@ function ProductPromotion() {
                             Our innovative, affordable line of health and wellness products can enhance your well-being with
                             the best that nature has to offer.</p>
 
-                        <a href="#">Learn More</a>
+                        <a href="/learn-more">Learn More</a>
                     </div>
                 </div>
                 <div className="col-md-7 d-flex align-items-center">

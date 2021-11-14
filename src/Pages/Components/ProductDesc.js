@@ -7,7 +7,7 @@ function ProductDesc() {
                 <div id="desc-image" className="py-1">
                     <div className="row">
                         <div className="col-md-6">
-                            <img src="/Images/productDesc.jpg" style={{ height: '100%', width: '70%' }}></img>
+                            <img src="/Images/productDesc.jpg" style={{ height: '100%', width: '70%' }} alt="productDesc"></img>
                         </div>
                         <div className="col-md-6 d-flex align-items-center">
                             <div className="d-flex flex-column">
@@ -36,6 +36,7 @@ function ProductDesc() {
                         </div>
                         <div className="col-md-6">
                             <iframe width="100%" height="100%"
+                                title="XQVNmgdYRUQ"
                                 src="https://www.youtube.com/embed/XQVNmgdYRUQ?autoplay=1&controls=1&loop=0&mute=1&rel=0&start=0">
                             </iframe>
                         </div>
@@ -48,11 +49,13 @@ function ProductDesc() {
                 <div className="row" style={{height : "600px"}}>
                     <div className="col-md-6 d-flex align-items-center my-1">
                         <iframe width="100%" height="100%"
+                            title="6rqf8-iEyAM"
                             src="https://www.youtube.com/embed/6rqf8-iEyAM?autoplay=1&controls=1&loop=0&mute=1&rel=0&start=0">
                         </iframe>
                     </div>
                     <div className="col-md-6 d-flex align-items-center my-1">
                         <iframe width="100%" height="100%"
+                            title="2SBkNwgUytU"
                             src="https://www.youtube.com/embed/2SBkNwgUytU?autoplay=1&controls=1&loop=0&mute=1&rel=0&start=0">
                         </iframe>
                     </div>

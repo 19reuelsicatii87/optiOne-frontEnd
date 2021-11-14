@@ -16,17 +16,17 @@ function Undertake() {
                     <div className="">
                         <div className="row">
                             <div className="col-md-6 p-5">
-                                <img className="py-3" src="/Images/undertake01.jpg" style={{ height: '75%', width: '100%' }}></img>
+                                <img className="py-3" src="/Images/undertake01.jpg" style={{ height: '75%', width: '100%' }} alt="undertake01"></img>
                                 <h3 className="d-flex align-contents-start text-primary">DIRECT SELLING</h3>
                                 <p className="text-start">Looking for a way to start a hassle-free business? Direct Selling is an easy way to
                                     start a business on the internet. You eliminate the risk of investing in inventory.
                                     All you need is time. Learn more about becoming a One Opti distributor by selling
                                     our high-quality health and wellness products!</p>
-                                <a className="d-flex align-contents-start" href="#">Learn More</a>
+                                <a className="d-flex align-contents-start" href="/learn-more">Learn More</a>
 
                             </div>
                             <div className="col-md-6 p-5">
-                                <img className="py-3" src="/Images/undertake02.jpg" style={{ height: '75%', width: '100%' }}></img>
+                                <img className="py-3" src="/Images/undertake02.jpg" style={{ height: '75%', width: '100%' }} alt="undertake02"></img>
                                 <h3 className="d-flex align-contents-start text-primary">MEMBERSHIP PROGRAM</h3>
                                 <p className="text-start">Natural and effective remedies are a major passion for many of us.
                                     By joining our affiliate program, you can share and recommend the all-natural
@@ -34,7 +34,7 @@ function Undertake() {
                                     commissions for every successful sale made while sharing natural health
                                     and wellness with the world!</p>
                                 <p>
-                                    <a className="d-flex align-contents-start" href="#">Learn More</a>
+                                    <a className="d-flex align-contents-start" href="/learn-more">Learn More</a>
                                 </p>
                             </div>
                         </div>
@@ -55,7 +55,7 @@ function Undertake() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6">
-                            <img className="py-3" src="/Images/undertake03.jpg" style={{ height: '100%', width: '100%' }}></img>
+                            <img className="py-3" src="/Images/undertake03.jpg" style={{ height: '100%', width: '100%' }} alt="undertake03"></img>
                         </div>
 
                         <div className="col-md-6 d-flex align-items-center">
@@ -76,7 +76,7 @@ function Undertake() {
                         </div>
                         <div className="col-md-12 d-flex justify-content-center">
                             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMalasakit-One-Opti-107544508404985&tabs=timeline&width=500&height=700&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
-                                width="500" height="700" style={{ border: "none", overflow: "hidden" }} scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                                title="facebookpage" width="500" height="700" style={{ border: "none", overflow: "hidden" }} scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                         </div>
                     </div>
                 </div>
