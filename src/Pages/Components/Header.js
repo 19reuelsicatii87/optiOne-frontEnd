@@ -36,12 +36,12 @@ function Header() {
                             <div className="collapse navbar-collapse" id="navbarColor03">
                                 <ul className="navbar-nav me-auto">
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/testb">Home
+                                        <a className="nav-link active" href="/">Home
                                             <span className="visually-hidden">(current)</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="#product-desc">Products</a>
+                                        <a className="nav-link active" href="/products">Products</a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link active" href="/testc">Membeship</a>

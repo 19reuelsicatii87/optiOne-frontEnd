@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css';
 import Home from './Pages/Home';
+import Products from './Pages/Products';
 
 function App() {
   return (
@@ -20,9 +21,7 @@ function App() {
 
           {/* Unprotected Routes */}
           {/* ============================*/}
-          {/* <Route path="/dashboard/login">
-            <Login />
-          </Route> */}
+          <Route path='/products' element={<Products/>} />
 
           {/* Unprotected and root Routes */}
           {/* ============================*/}
