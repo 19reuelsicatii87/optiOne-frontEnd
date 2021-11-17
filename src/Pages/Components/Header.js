@@ -36,24 +36,24 @@ function Header() {
                             <div className="collapse navbar-collapse" id="navbarColor03">
                                 <ul className="navbar-nav me-auto">
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/">Home
+                                        <a className="nav-link active" href="/">HOME
                                             <span className="visually-hidden">(current)</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/products">Products</a>
+                                        <a className="nav-link active" href="/products">PRODUCTS</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/testc">Membeship</a>
+                                        <a className="nav-link active" href="/membership">MEMBERSHIP</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/testd">Order</a>
+                                        <a className="nav-link active" href="/testd">ORDER</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/teste">About Us</a>
+                                        <a className="nav-link active" href="/teste">ABOUT US</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/testf">Blogs</a>
+                                        <a className="nav-link active" href="/testf">BLOGS</a>
                                     </li>
                                 </ul>
                             </div>

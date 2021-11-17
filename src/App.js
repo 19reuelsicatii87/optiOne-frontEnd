@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css';
 import Home from './Pages/Home';
 import Products from './Pages/Products';
+import Memership from './Pages/Memership';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           {/* Unprotected Routes */}
           {/* ============================*/}
           <Route path='/products' element={<Products/>} />
+          <Route path='/membership' element={<Memership/>} />
 
           {/* Unprotected and root Routes */}
           {/* ============================*/}

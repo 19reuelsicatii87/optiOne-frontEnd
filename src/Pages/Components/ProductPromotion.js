@@ -4,9 +4,9 @@ function ProductPromotion() {
     return (
         <section id="product-promotion" className="container p-5">
             <div className="row">
-                <div className="col-md-5 d-flex align-items-center py-5">
+                <div className="col-md-5 d-flex justify-content-center py-5">
                     <div className="d-flex flex-column">
-                        <img src="/Images/productFeedback.png" style={{ height: '300px', width: '300px' }} alt="productFeedback"></img>
+                        <img className="w-100" src="/Images/productFeedback.png" style={{ height: '350', width: '300px' }} alt="productFeedback"></img>
                         <h2 className="text-primary fw-bold">ONE OPTI PRODUCTS.</h2>
                         <p>Miracles of nature that you deserve!.</p>
                         <p>We put together licensed advancements, hand picked ingredients,

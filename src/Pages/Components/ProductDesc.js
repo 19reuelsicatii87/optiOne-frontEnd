@@ -45,7 +45,7 @@ function ProductDesc() {
 
             </section>
 
-            <div id="desc-videoOnly" className="container p-5">
+            <div id="desc-videoOnly" className="container p-1">
                 <div className="row" style={{height : "600px"}}>
                     <div className="col-md-6 d-flex align-items-center my-1">
                         <iframe width="100%" height="100%"
