@@ -62,7 +62,6 @@ function OptiProducts() {
                     <div className="col-md-6">
                         <img className="py-3" src="/Images/undertake03.jpg" style={{ height: '100%', width: '100%' }} alt="undertake03"></img>
                     </div>
-
                     <div className="col-md-6 d-flex align-items-center">
                         <div className="d-flex flex-column">
                             <h1 className="text-start fw-bold mb-3" style={{ color: "#ef4943" }}>FREE! FREE! FREE!</h1>

@@ -17,10 +17,10 @@ function MembershipPackages() {
                     </div>
                     <div className="row">
                         <div className="col-md-3">
-                            <div class="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
+                            <div className="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
                                 <img src="/Images/MemberLogo_Silver.png" className="card-img-top img-fluid" alt="MemberLogo_Silver"></img>
-                                <div class="card-body">
-                                    <h5 class="card-title">SILVER MEMBERSHIP</h5>
+                                <div className="card-body">
+                                    <h5 className="card-title">SILVER MEMBERSHIP</h5>
                                     <p className="text-start fw-bold text-primary">₱3,988.00</p>
                                     <p className="text-start ">Package Inclusions</p>
                                     <ul className="text-start">
@@ -52,10 +52,10 @@ function MembershipPackages() {
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <div class="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
+                            <div className="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
                                 <img src="/Images/MemberLogo_Gold.png" className="card-img-top img-fluid" alt="MemberLogo_Gold"></img>
-                                <div class="card-body">
-                                    <h5 class="card-title">GOLD MEMBERSHIP</h5>
+                                <div className="card-body">
+                                    <h5 className="card-title">GOLD MEMBERSHIP</h5>
                                     <p className="text-start fw-bold text-primary">₱8,888.00</p>
                                     <p className="text-start ">Package Inclusions</p>
                                     <ul className="text-start">
@@ -96,10 +96,10 @@ function MembershipPackages() {
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <div class="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
+                            <div className="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
                                 <img src="/Images/MemberLogo_Platinum.png" className="card-img-top img-fluid" alt="MemberLogo_Platinum"></img>
-                                <div class="card-body">
-                                    <h5 class="card-title">PLATINUM MEMBERSHIP</h5>
+                                <div className="card-body">
+                                    <h5 className="card-title">PLATINUM MEMBERSHIP</h5>
                                     <p className="text-start fw-bold text-primary">₱14,888.00</p>
                                     <p className="text-start ">Package Inclusions</p>
                                     <ul className="text-start">
@@ -140,11 +140,11 @@ function MembershipPackages() {
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <div class="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
+                            <div className="card w-100" style={{ height: "100%", width: "18rem", border: "none" }}>
                                 <img src="/Images/MemberLogo_Stocking.png" className="card-img-top img-fluid"
                                     alt="MemberLogo_Stocking"></img>
-                                <div class="card-body">
-                                    <h5 class="card-title">MOBILE STOCKING</h5>
+                                <div className="card-body">
+                                    <h5 className="card-title">MOBILE STOCKING</h5>
                                     <p className="text-start fw-bold text-primary">₱50,000.00</p>
                                     <p className="text-start ">Package Inclusions</p>
                                     <ul className="text-start">
@@ -187,7 +187,7 @@ function MembershipPackages() {
                     </div>
                     <div className="row">
                         <div className="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary btn-lg w-50">SIGN UP FORM</button>
+                            <button type="button" className="btn btn-primary btn-lg w-50">SIGN UP FORM</button>
                         </div>
                     </div>
                     <div className="row my-5" >
@@ -213,21 +213,11 @@ function MembershipPackages() {
                                         </li>
                                     </ol>
                                 </p>
-
                                 <p>For more information on terms and conditions, please reach out to your leader.</p>
-                                <button type="button" class="btn btn-primary btn-lg w-100">WATCH ONLINE BUSINESS PRESENTATION</button>
-
+                                <button type="button" className="btn btn-primary btn-lg w-100">WATCH ONLINE BUSINESS PRESENTATION</button>
                             </div>
                         </div>
-
-
-
-                       
-
-
-
                     </div>
-
                 </div>
             </div>
         </section>

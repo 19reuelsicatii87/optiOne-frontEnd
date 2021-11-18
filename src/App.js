@@ -3,6 +3,7 @@ import './App.css';
 import Home from './Pages/Home';
 import Products from './Pages/Products';
 import Memership from './Pages/Memership';
+import OnlineBusinessPresentation from './Pages/OnlineBusinessPresentation';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           {/* ============================*/}
           <Route path='/products' element={<Products/>} />
           <Route path='/membership' element={<Memership/>} />
+          <Route path='/membership/online-business-presentation' element={<OnlineBusinessPresentation/>} />
 
           {/* Unprotected and root Routes */}
           {/* ============================*/}

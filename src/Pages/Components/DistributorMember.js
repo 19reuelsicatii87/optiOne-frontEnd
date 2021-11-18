@@ -14,21 +14,21 @@ function DistributorMember() {
                         </iframe>
                     </div>
 
-                    <div className="col-md-5">
+                    <div className="col-md-5 my-2">
                         <div id="promotion-card">
-                            <div id="promotion-card-header" className="p-3" style={{ borderBottom: "5px solid #eb6666" }}>
+                            <div id="promotion-card-header" className="pb-1" style={{ borderBottom: "5px solid #eb6666" }}>
                                 <div className="d-flex flex-row">
-                                    <i className="bi bi-hand-thumbs-up"
+                                    <i className="bi bi-hand-thumbs-up d-flex align-items-center px-2"
                                         style={{
                                             fontSize: "30px",
                                             color: "#eb6666"
                                         }}></i>
-                                    <h5 className="text-start px-3"
+                                    <h5 className="text-start d-flex align-items-center m-0"
                                         style={{ color: "#eb6666" }}>GET UP TO 42.8% DISCOUNT ON ALL PRODUCTS</h5>
                                 </div>
                             </div>
                             <div id="promotion-card-body">
-                                <p className="text-start">Whether you want to build your own livelihood or just want to take
+                                <p className="text-start pt-2">Whether you want to build your own livelihood or just want to take
                                     advantage of the discounted price for personal use, becoming a member
                                     sure is a great benefit to everyone.</p>
                                 <p className="text-start">When it comes to creating an income and building a business - that is
@@ -39,19 +39,19 @@ function DistributorMember() {
                             </div>
                         </div>
                         <div id="promotion-card">
-                            <div id="promotion-card-header" className="p-3" style={{ borderBottom: "5px solid #eb6666" }}>
+                            <div id="promotion-card-header" className="pb-1" style={{ borderBottom: "5px solid #eb6666" }}>
                                 <div className="d-flex flex-row">
-                                    <i className="bi bi-signpost-split"
+                                    <i className="bi bi-signpost-split d-flex align-items-center px-2"
                                         style={{
                                             fontSize: "30px",
                                             color: "#eb6666"
                                         }}></i>
-                                    <h5 className="text-start px-3"
+                                    <h5 className="text-start d-flex align-items-center m-0"
                                         style={{ color: "#eb6666" }}>THERE ARE 2 PRIMARY WAYS to EARN in ONE OPTI</h5>
                                 </div>
                             </div>
                             <div id="promotion-card-body">
-                                <h5 className="text-primary text-start">1. Direct Selling</h5>
+                                <h5 className="text-primary text-start pt-2">1. Direct Selling</h5>
                                 <p className="text-start">Designed for entrepreneurs who prefer to resell the product as is. Plain and simple.</p>
                                 <h5 className="text-primary text-start">2. Multi-Level Marketing</h5>
                                 <p className="text-start">Designed for individuals who aim for greater success in the business of networking.</p>
