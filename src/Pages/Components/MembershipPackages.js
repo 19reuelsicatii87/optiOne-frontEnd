@@ -214,7 +214,7 @@ function MembershipPackages() {
                                     </ol>
                                 </p>
                                 <p>For more information on terms and conditions, please reach out to your leader.</p>
-                                <button type="button" className="btn btn-primary btn-lg w-100">WATCH ONLINE BUSINESS PRESENTATION</button>
+                                <a type="button" href="/membership/online-business-presentation" className="btn btn-primary btn-lg w-100">WATCH ONLINE BUSINESS PRESENTATION</a>
                             </div>
                         </div>
                     </div>

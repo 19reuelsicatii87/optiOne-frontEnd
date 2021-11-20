@@ -9,7 +9,6 @@ function OnlineBusinessPresentation() {
             <Header></Header>
             <OBPContent></OBPContent>
             <Footer></Footer>
-
         </div>
     )
 }

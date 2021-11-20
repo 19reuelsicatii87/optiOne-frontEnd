@@ -20,7 +20,7 @@ function BusinessStrategy() {
                     </div>
                     <div className="row">
                         <div className="d-flex justify-content-center py-3">
-                            <button type="button" class="btn btn-success btn-lg w-50">WATCH ONLINE BUSINESS PRESENTATION</button>
+                            <a href="/membership/online-business-presentation" type="button" class="btn btn-success btn-lg w-50">WATCH ONLINE BUSINESS PRESENTATION</a>
                         </div>
                     </div>
                 </div>

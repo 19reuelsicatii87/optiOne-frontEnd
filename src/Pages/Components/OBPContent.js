@@ -5,13 +5,13 @@ function OBPContent() {
     return (
         <section id="OnlineBusinessPresentation-Content">
             <div className="container">
-                <div className="row my-5">
+                <div className="row mt-5">
                     <h1 className="text-primary text-start">CONTENT</h1>
                     <p className="text-start">These training videos tackle the different ways
                         to earn from One Opti Mktg. Inc. as a registered member or distributor.</p>
                     <p className="text-start ">These videos cover the following Compensation Plans and topics:
                         <ol type="A">
-                            <li><b>Member Packages</b>
+                            <li className="my-2"><b>Member Packages</b>
                                 <ul className="text-start">
                                     <li>Silver Membership</li>
                                     <li>Gold Membership</li>
@@ -19,8 +19,8 @@ function OBPContent() {
                                     <li>Mobile Stockist</li>
                                 </ul>
                             </li>
-                            <li><b>Direct Selling - Resellers Choice</b></li>
-                            <li><b>Multi-Level Marketing</b>
+                            <li className="my-2"><b>Direct Selling - Resellers Choice</b></li>
+                            <li className="my-2"><b>Multi-Level Marketing</b>
                                 <ul className="text-start">
                                     <li>Team Sales Rebates</li>
                                     <li>Binary Pairing Bonus</li>

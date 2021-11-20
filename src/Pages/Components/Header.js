@@ -53,7 +53,7 @@ function Header() {
                                         <a className="nav-link active" href="/teste">ABOUT US</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/testf">BLOGS</a>
+                                        <a className="nav-link active" href="/blogs">BLOGS</a>
                                     </li>
                                 </ul>
                             </div>
