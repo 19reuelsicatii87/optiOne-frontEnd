@@ -1,17 +1,17 @@
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import BlogMain from './Components/BlogMain';
 import Contactus from './Components/Contactus';
+import ProductPromotion from './Components/ProductPromotion';
 
-function BlogOverview() {
+function ContactUs() {
     return (
         <div>
             <Header></Header>
-            <BlogMain></BlogMain>
+            <ProductPromotion></ProductPromotion>
             <Contactus></Contactus>
             <Footer></Footer>
         </div>
     )
 }
 
-export default BlogOverview
+export default ContactUs

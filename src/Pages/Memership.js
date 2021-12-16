@@ -5,6 +5,7 @@ import DistributorMember from './Components/DistributorMember';
 import OptiProductsCarousel from './Components/OptiProductsCarousel';
 import MembershipPackages from './Components/MembershipPackages';
 import BusinessStrategy from './Components/BusinessStrategy';
+import Contactus from './Components/Contactus';
 
 function Memership() {
     return (
@@ -14,6 +15,7 @@ function Memership() {
             <OptiProductsCarousel></OptiProductsCarousel>
             <MembershipPackages></MembershipPackages>
             <BusinessStrategy></BusinessStrategy>
+            <Contactus></Contactus>
             <Footer></Footer>
         </div>
     )

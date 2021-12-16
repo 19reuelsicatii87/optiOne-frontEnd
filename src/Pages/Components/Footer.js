@@ -25,9 +25,9 @@ function Footer() {
                     <div className="col-md-3 pt-3">
                         <h4 className="text-start mb-1">Contact Us</h4>
                         <div id="footer-contact-details" className="">
-                            <p className="text-start mb-1"><i class="bi bi-phone-fill"> 09354363702 </i></p>
-                            <p className="text-start mb-1"><i class="bi bi-envelope-fill"> reynaldo.monforte@gmail.com </i></p>
-                            <p className="text-start mb-1"><i class="bi bi-facebook"> Malasakit One Opti </i></p>
+                            <p className="text-start mb-1"><i className="bi bi-phone-fill"> 09354363702 </i></p>
+                            <p className="text-start mb-1"><i className="bi bi-envelope-fill"> reynaldo.monforte@gmail.com </i></p>
+                            <p className="text-start mb-1"><i className="bi bi-facebook"> Malasakit One Opti </i></p>
                         </div>
 
                     </div>
