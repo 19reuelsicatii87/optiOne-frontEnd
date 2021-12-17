@@ -274,7 +274,7 @@ function OrderSummaryForm(props) {
                         <div className="mb-4">
                             <h4 className="text-start text-white my-3">Payment Slip</h4>
                             <div className="my-1">
-                                <img src={`http://localhost:8000/` + filePath} className="img-fluid img-thumbnail" 
+                                <img src={process.env.REACT_APP_BACKENDURL + `/` + filePath} className="img-fluid img-thumbnail" 
                                 alt="Payment Slip" style={{ maxHeight: "35em"}}></img>
                             </div>
                         </div>
