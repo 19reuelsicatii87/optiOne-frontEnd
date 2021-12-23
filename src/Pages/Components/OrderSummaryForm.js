@@ -9,8 +9,6 @@ function OrderSummaryForm(props) {
 
     useEffect(() => {
 
-
-
         retrievePackage();
 
     }, []);
@@ -19,8 +17,9 @@ function OrderSummaryForm(props) {
     // =================================================
     const navigate = useNavigate();
     const [membershipPackageDetails, setMembershipPackageDetails] = useState([]);
+    const [productDetails, setProductDetails] = useState([]);
     const [orderStatus, setOrderStatus] = useState("");
-    const [orderCode, setOrderCode] = useState();
+    const [orderCode, setOrderCode] = useState("ToBeDetermine");
 
 
     const [fullname, setFullname] = useState("");
@@ -58,9 +57,12 @@ function OrderSummaryForm(props) {
 
         // Order Package Object
         // ================================     
-        setMembershipPackageDetails(JSON.parse(responseOrderPackage.data[0].membership_package));
         setOrderCode(responseOrderPackage.data[0].order_code);
         setOrderStatus(responseOrderPackage.data[0].order_status);
+
+        responseOrderPackage.data[0].order_code.length == 15
+            ? setMembershipPackageDetails(JSON.parse(responseOrderPackage.data[0].membership_package))
+            : setProductDetails(JSON.parse(responseOrderPackage.data[0].order_product));
 
 
         setFullname(responseOrderPackage.data[0].fullname);
@@ -151,6 +153,55 @@ function OrderSummaryForm(props) {
     }
 
 
+    function OrderSummaryRender() {
+        return (
+
+            orderCode.length == 15
+                ?
+                membershipPackageDetails.map((membershipPackageDetail, index) =>
+                    <tr key={index}>
+                        <td className="align-middle">{membershipPackageDetail.package}</td>
+                        <td className="align-middle">{(membershipPackageDetail.price * 1).toFixed(2)}</td>
+                        <td className="align-middle">{membershipPackageDetail.quantity}</td>
+                        <td className="align-middle">{membershipPackageDetail.subTotal == "" ? "" : (membershipPackageDetail.subTotal * 1).toFixed(2)}</td>
+                    </tr>
+                )
+                :
+                productDetails.map((productDetail, index) =>
+                    <tr key={index}>
+                        <td className="align-middle">{productDetail.product}</td>
+                        <td className="align-middle">{(productDetail.price * 1).toFixed(2)}</td>
+                        <td className="align-middle">{productDetail.quantity}</td>
+                        <td className="align-middle">{productDetail.subTotal == "" ? "" : (productDetail.subTotal).toFixed(2)}</td>
+
+                    </tr>
+                )
+        )
+    }
+
+
+    function TotalOrderSummaryRender() {
+        return (
+
+            orderCode.length == 15
+                ?
+                membershipPackageDetails.length == 0 ?
+                    ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
+                    (membershipPackageDetails
+                        .map(membershipPackageDetail => membershipPackageDetail.subTotal)
+                        .reduce((prev, next) => prev + next)
+                        + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
+                :
+                productDetails.length == 0 ?
+                    ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
+                    (productDetails
+                        .map(productDetail => productDetail.subTotal)
+                        .reduce((prev, next) => prev + next)
+                        + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
+        )
+    }
+
+
 
 
 
@@ -220,14 +271,7 @@ function OrderSummaryForm(props) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {membershipPackageDetails.map((membershipPackageDetail, index) =>
-                                        <tr key={index}>
-                                            <td className="align-middle">{membershipPackageDetail.package}</td>
-                                            <td className="align-middle">{(membershipPackageDetail.price * 1).toFixed(2)}</td>
-                                            <td className="align-middle">{membershipPackageDetail.quantity}</td>
-                                            <td className="align-middle">{membershipPackageDetail.subTotal == "" ? "" : (membershipPackageDetail.subTotal * 1).toFixed(2)}</td>
-                                        </tr>
-                                    )}
+                                    {OrderSummaryRender()}
                                     <tr>
                                         <td className="align-middle">
                                             <p className="mb-0">Delivery Fees:</p>
@@ -257,13 +301,7 @@ function OrderSummaryForm(props) {
                                         <td className="align-middle"></td>
                                         <th className="align-middle">Total</th>
                                         <td className="align-middle">
-                                            {membershipPackageDetails.length == 0 ?
-                                                ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
-                                                (membershipPackageDetails
-                                                    .map(membershipPackageDetail => membershipPackageDetail.subTotal)
-                                                    .reduce((prev, next) => prev + next)
-                                                    + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
-                                            }
+                                            {TotalOrderSummaryRender()}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -274,8 +312,8 @@ function OrderSummaryForm(props) {
                         <div className="mb-4">
                             <h4 className="text-start text-white my-3">Payment Slip</h4>
                             <div className="my-1">
-                                <img src={process.env.REACT_APP_BACKENDURL + `/` + filePath} className="img-fluid img-thumbnail" 
-                                alt="Payment Slip" style={{ maxHeight: "35em"}}></img>
+                                <img src={process.env.REACT_APP_BACKENDURL + `/` + filePath} className="img-fluid img-thumbnail"
+                                    alt="Payment Slip" style={{ maxHeight: "35em" }}></img>
                             </div>
                         </div>
                     </div>

@@ -1,72 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function OrderProductForm() {
 
-    // Packages, Delivery and Option States
-    // =================================================
-    const [optiPackages, setOptiPackages] = useState([])
-    const [deliveryOptions, setDeliveryOptions] = useState([]);
-    const [paymentOptions, setPaymentOptions] = useState([]);
+
 
     useEffect(() => {
 
-        retrieveOptiPackages();
+        retrieveOptiGuestProducts();
+        retrieveOptiMemberProducts();
         retrieveDeliveryOptions();
-        retrievePaymentOptions();
 
-    }, [0]);
+    }, []);
 
-    async function retrieveOptiPackages() {
-        let requestOptiPackages = {
-            method: 'GET',
-            url: process.env.REACT_APP_BACKENDURL + '/api/listOptiPackages',
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        }
-
-        let responseOptiPackages = await axios(requestOptiPackages);
-        setOptiPackages(responseOptiPackages.data);
-    }
-
-    async function retrieveDeliveryOptions() {
-        let requestDeliveryOptions = {
-            method: 'GET',
-            url: process.env.REACT_APP_BACKENDURL + '/api/listDeliveryOptions',
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        }
-
-        let responseDeliveryOptions = await axios(requestDeliveryOptions);
-        setDeliveryOptions(responseDeliveryOptions.data);
-    }
-
-    async function retrievePaymentOptions() {
-        let requestPaymentOptions = {
-            method: 'GET',
-            url: process.env.REACT_APP_BACKENDURL + '/api/listPaymentOptions',
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        }
-
-        let responsePaymentOptions = await axios(requestPaymentOptions);
-        setPaymentOptions(responsePaymentOptions.data);
-    }
-
+    // Products, Delivery and Option States
+    // =================================================
+    const [optiGuestProducts, setOptiGuestProducts] = useState([])
+    const [optiMemberProducts, setOptiMemberProducts] = useState([])
+    const [deliveryOptions, setDeliveryOptions] = useState([]);
+    const navigate = useNavigate();
 
 
     // Package Order States
     // =================================================
-    const [membershipPackageDetails, setMembershipPackageDetails] = useState({package: "", price: "", quantity: ""});
-    const [membershipPackage, setMembershipPackage] = useState("ToBeDetermine");
-    const [quantity, setQuantity] = useState("0");
-    const [price, setPrice] = useState("0.00");
+    const [memberCode, setMemberCode] = useState("");
+    const [productDetails, setProductDetails] = useState([]);
+    const [product, setProduct] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [price, setPrice] = useState("");
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
@@ -85,36 +47,82 @@ function OrderProductForm() {
     const [deliveryFee, setDeliveryFee] = useState("0.00");
     const [paymentOption, setPaymentOption] = useState("ToBeDetermine");
     const [paymentFee, setPaymentFee] = useState("0.00");
-    const [total, setTotal] = useState(0.00);
 
+    async function retrieveOptiGuestProducts() {
+        let requestOptiGuestProducts = {
+            method: 'GET',
+            url: process.env.REACT_APP_BACKENDURL + '/api/listGuestOptiProducts',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            }
+        }
 
-    // Order Product as Guest or Member
-    // =================================================
-    const [sponsorCodeStatus, setsponsorCodeStatus] = useState(false);
-    function SponsorCode() {
-        return (
+        let responseOptiGuestProducts = await axios(requestOptiGuestProducts);
+        setOptiGuestProducts(responseOptiGuestProducts.data);
+    }
 
-            sponsorCodeStatus
-                ?
-                <div className="mb-1">
-                    <p for="exampleInputEmail1" className="text-start mb-0 fw-bold">Sponsor Code</p>
-                    <input type="text" className="form-control" id="exampleInputPassword1"></input>
-                </div >
-                :
-                <div className="mb-1" hidden>
-                    <p for="exampleInputEmail1" className="text-start mb-0 fw-bold">Sponsor Code</p>
-                    <input type="text" className="form-control" id="exampleInputPassword1"></input>
-                </div >
-        )
+    async function retrieveOptiMemberProducts() {
+        let requestOptiMemberProducts = {
+            method: 'GET',
+            url: process.env.REACT_APP_BACKENDURL + '/api/listMemberOptiProducts',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            }
+        }
+
+        let responseOptiMemberProducts = await axios(requestOptiMemberProducts);
+        setOptiMemberProducts(responseOptiMemberProducts.data);
+    }
+
+    async function retrieveDeliveryOptions() {
+        let requestDeliveryOptions = {
+            method: 'GET',
+            url: process.env.REACT_APP_BACKENDURL + '/api/listDeliveryOptions',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            }
+        }
+
+        let responseDeliveryOptions = await axios(requestDeliveryOptions);
+        setDeliveryOptions(responseDeliveryOptions.data);
+    }
+
+    const addProductItem = () => {
+
+        productDetails.push(
+            {
+                product: product,
+                quantity: quantity,
+                price: price,
+                subTotal: quantity * price
+            })
+
+        // To call usestate and re-render, update to state is needed
+        // To qualify as update,  you have to destroy the OLD array and create a new one
+        setProductDetails([...productDetails]);
+        console.log(productDetails);
+
+    }
+
+    function deleteProductItem(index) {
+
+        console.log(index);
+        productDetails.splice(index, 1)
+
+        // To call usestate and re-render, update to state is needed
+        // To qualify as update,  you have to destroy the OLD array and create a new one
+        setProductDetails([...productDetails]);
+
     }
 
 
     async function addPackage() {
 
         let formData = new FormData();
-        formData.append('membership_package', membershipPackage);
-        formData.append('price', price);
-        formData.append('quantity', quantity);
+        formData.append('order_product', JSON.stringify(productDetails));
         formData.append('fullname', fullname);
         formData.append('email', email);
         formData.append('mobile', mobile);
@@ -133,11 +141,16 @@ function OrderProductForm() {
         formData.append('delivery_fee', deliveryFee);
         formData.append('payment_option', paymentOption);
         formData.append('payment_fee', paymentFee);
-        formData.append('total', ((price * quantity) + (deliveryFee * 1) + (paymentFee * 1)));
+        formData.append('total', productDetails.length == 0 ?
+            (deliveryFee * 1) + (paymentFee * 1) :
+            (productDetails
+                .map(productDetails => productDetails.subTotal)
+                .reduce((prev, next) => prev + next)
+                + (deliveryFee * 1) + (paymentFee * 1)));
 
         let requestAddPackage = {
             method: 'POST',
-            url: process.env.REACT_APP_BACKENDURL + '/api/addPackage',
+            url: process.env.REACT_APP_BACKENDURL + '/api/addProduct',
             headers: {
                 "Content-Type": 'multipart/form-data',
                 "Accept": 'application/json'
@@ -146,20 +159,56 @@ function OrderProductForm() {
         }
 
         let responseAddPackage = await axios(requestAddPackage);
-        //console.log(responseAddPackage.data)
-
-        setMembershipPackageDetails(...membershipPackageDetails, {package: "testone", price: "testtwo", quantity: "testthree"})
+        navigate('/order/payment/' + responseAddPackage.data.order_code)
 
     }
+
+
+    // Order Product as Guest or Member
+    // =================================================
+    const [sponsorCodeStatus, setsponsorCodeStatus] = useState(false);
+    function SponsorCode() {
+        return (
+
+            sponsorCodeStatus
+                ?
+                <div className="mb-1">
+                    <p for="exampleInputEmail1" className="text-start mb-0 fw-bold">Sponsor Code</p>
+                    <input type="text" className="form-control" onChange={(e) => setMemberCode(e.target.value)}></input>
+                </div >
+                :
+                <div className="mb-1" hidden>
+                    <p for="exampleInputEmail1" className="text-start mb-0 fw-bold">Sponsor Code</p>
+                    <input type="text" className="form-control"></input>
+                </div >
+        )
+    }
+
+    function OptiProducts() {
+        return (
+
+            memberCode.length == 0
+                ?
+                optiGuestProducts.map((optiGuestProduct) =>
+                    <option key={optiGuestProduct.id} value={[optiGuestProduct.order_product, optiGuestProduct.price]}>{`${optiGuestProduct.order_product} - ${optiGuestProduct.bundle}`}</option>
+                )
+                :
+                optiMemberProducts.map((optiMemberProduct) =>
+                    <option key={optiMemberProduct.id} value={[optiMemberProduct.order_product, optiMemberProduct.price]}>{`${optiMemberProduct.order_product} - ${optiMemberProduct.bundle}`}</option>
+                )
+        )
+    }
+
+
 
 
     return (
         <section id="order-package-form">
             <div className="container my-5">
-                <h1 className="text-start text-primary mb-5">Product Order Form</h1>
+                <h1 className="text-start text-primary mb-5">Product Form</h1>
                 <div className="row">
                     <div className="col-md-6 mb-2">
-                        <h4 className="text-start text-primary">Member Details</h4>
+                        <h4 className="text-start text-primary">Order Details</h4>
                         <div className="mb-3 form-check">
                             <input type="checkbox"
                                 className="form-check-input"
@@ -168,27 +217,23 @@ function OrderProductForm() {
                             <p className="text-start mb-0 fw-bold"><small>Claim your rebates and order as Member</small></p>
                         </div>
                         {SponsorCode()}
-
-                        <div className="mb-2">
-                            <p className="text-start mb-0 fw-bold">Opti Products</p>
+                        <p className="text-start mb-0 fw-bold">Products and Bundle</p>
+                        <div className="mb-2 p-3" style={{ backgroundColor: "lightgray" }}>
                             <div className="d-flex flex-row justify-content-between">
-                                <div className="col-md-9" style={{ paddingRight: "2px" }}>
+                                <div className="col-md-7" style={{ paddingRight: "2px" }}>
                                     <select className="form-control"
                                         onChange={(e) => {
-                                            const [membershipPackageTemp, priceTemp] = (e.target.value).split(",");
-                                            setMembershipPackage(membershipPackageTemp);
+                                            const [productTemp, priceTemp] = (e.target.value).split(",");
+                                            setProduct(productTemp);
                                             setPrice(priceTemp);
                                         }}>
-                                        <option selected>Select MemberShip Package</option>
-                                        {optiPackages.map((optiPackage) =>
-                                            <option value={[optiPackage.membership_package, optiPackage.price]}>{optiPackage.membership_package}</option>
-                                        )}
+                                        <option defaultValue>Select Product</option>
+                                        {OptiProducts()}
                                     </select>
-
                                 </div>
                                 <div className="col-md-3">
                                     <select className="form-control" onChange={(e) => setQuantity(e.target.value)}>
-                                        <option selected>Quantity</option>
+                                        <option defaultValue>Quantity</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -199,6 +244,19 @@ function OrderProductForm() {
                                         <option value="8">8</option>
                                     </select>
                                 </div>
+                                <div className="col-md-2 d-flex justify-content-end">
+                                    <button type="button" className="btn btn-success" onClick={addProductItem}>ADD</button>
+                                </div>
+                            </div>
+                            <div>
+                                {
+                                    productDetails.length != 0 &&
+                                    <p className="text-start text-success mb-0">
+                                        <sub>Your Package is successfully added over "<b>Membership Package Summary</b>" below.
+                                            Add new Package by selecting another <b>Package</b> and <b>Quantity</b></sub>
+                                    </p>
+                                }
+
                             </div>
                         </div>
                         <div className="mb-2">
@@ -231,14 +289,14 @@ function OrderProductForm() {
                             <div className="d-flex flex-row justify-content-between">
                                 <div className="col-md-4" style={{ paddingRight: "2px" }}>
                                     <select className="form-control w-100" onChange={(e) => setGender(e.target.value)}>
-                                        <option selected>Select Gender</option>
+                                        <option defaultValue>Select Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
                                 </div>
                                 <div className="col-md-8">
                                     <select className="form-control" onChange={(e) => setCivilStatus(e.target.value)}>
-                                        <option selected>Select Civil Status</option>
+                                        <option defaultValue>Select Civil Status</option>
                                         <option value="Single">Single</option>
                                         <option value="Married">Married</option>
                                         <option value="Divored or Seperated">Divored or Seperated</option>
@@ -254,15 +312,9 @@ function OrderProductForm() {
                                 onChange={(e) => setDateofbirth(e.target.value)}></input>
                             <p className="text-start mb-0 text-black-50"><small>Format: YYYY-MM-DD</small></p>
                         </div>
-                        <div className="mb-2">
-                            <p className="text-start mb-0 fw-bold">Upload Govt Issued ID</p>
-                            <input type="file" className="form-control"
-                                onChange={(e) => setFilePath(e.target.files[0])}></input>
-                            <p className="text-start mb-0 text-black-50"><small>Passport, Driver's License, SSS UMID Card, Postal ID, etc</small></p>
-                        </div>
                     </div>
                     <div className="col-md-6">
-                        <h4 className="text-start text-primary">Address and Payment Details</h4>
+                        <h4 className="text-start text-primary">Address Details</h4>
 
                         <div className="mb-2">
                             <p className="text-start mb-0 fw-bold">Unit, Floor and Building Name</p>
@@ -304,52 +356,44 @@ function OrderProductForm() {
                                     setDeliveryOption(deliveryOptionTemp);
                                     setDeliveryFee(deliveryFeeTemp);
                                 }}>
-                                <option selected>Please select Delivery Option...</option>
+                                <option defaultValue>Please select Delivery Option...</option>
                                 {deliveryOptions.map((deliveryOption) =>
-                                    <option value={[deliveryOption.delivery_option, deliveryOption.delivery_fee]}>{deliveryOption.delivery_option}</option>
+                                    <option key={deliveryOption.id} value={[deliveryOption.delivery_option, deliveryOption.delivery_fee]}>{deliveryOption.delivery_option}</option>
                                 )}
                             </select>
                         </div>
-
-                        <div className="mb-2">
-                            <p className="text-start mb-0 fw-bold">Payment Option</p>
-                            <select className="form-control"
-                                onChange={(e) => {
-                                    const [paymentOptionTemp, paymentFeeTemp] = (e.target.value).split(",");
-                                    setPaymentOption(paymentOptionTemp);
-                                    setPaymentFee(paymentFeeTemp);
-                                }}>
-                                <option selected>Please select Payment Option...</option>
-                                {paymentOptions.map((paymentOption) =>
-                                    <option value={[paymentOption.payment_option, paymentOption.payment_fee]}>{paymentOption.payment_option}</option>
-                                )}
-                            </select>
-                        </div>
-
                     </div>
-
                 </div>
-
                 <div className=" row mt-3 d-flex justify-content-center">
                     <h4 className="text-start text-primary mb-2">Membership Package Summary</h4>
                     <div className="container">
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
-                                    <th className="col-5">Description</th>
+                                    <th className="col-1"></th>
+                                    <th className="col-6">Description</th>
                                     <th className="col-2">Price</th>
                                     <th className="col-1">Quantity</th>
-                                    <th className="col-4">SubTotal</th>
+                                    <th className="col-2">SubTotal</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {productDetails.map((productDetail, index) =>
+                                    <tr key={index}>
+                                        <td className="align-middle">
+                                            <button value={index} onClick={() => deleteProductItem(index)}
+                                                className="btn text-light"
+                                                style={{ backgroundColor: "red" }}><i className="bi bi-trash"></i></button>
+                                        </td>
+                                        <td className="align-middle">{productDetail.product}</td>
+                                        <td className="align-middle">{(productDetail.price * 1).toFixed(2)}</td>
+                                        <td className="align-middle">{productDetail.quantity}</td>
+                                        <td className="align-middle">{productDetail.subTotal == "" ? "" : (productDetail.subTotal).toFixed(2)}</td>
+
+                                    </tr>
+                                )}
                                 <tr>
-                                    <td className="align-middle">{membershipPackage}</td>
-                                    <td className="align-middle">{(price * 1).toFixed(2)}</td>
-                                    <td className="align-middle">{quantity}</td>
-                                    <td className="align-middle">{(price * quantity).toFixed(2)}</td>
-                                </tr>
-                                <tr>
+                                    <td></td>
                                     <td className="align-middle">
                                         <p className="mb-0">Delivery Fees:</p>
                                         <p className="mb-0">{deliveryOption}</p>
@@ -359,6 +403,7 @@ function OrderProductForm() {
                                     <td className="align-middle">{(deliveryFee * 1).toFixed(2)}</td>
                                 </tr>
                                 <tr>
+                                    <td></td>
                                     <td className="align-middle">
                                         <p className="mb-0">Others:</p>
                                         <p className="mb-0">{paymentOption}</p>
@@ -368,29 +413,32 @@ function OrderProductForm() {
                                     <td className="align-middle">{(paymentFee * 1).toFixed(2)}</td>
                                 </tr>
                                 <tr>
+                                    <td></td>
                                     <td className="align-middle">Discounts</td>
                                     <td className="align-middle">TBD</td>
                                     <td className="align-middle"></td>
                                     <td className="align-middle">0.00</td>
                                 </tr>
                                 <tr>
+                                    <td></td>
                                     <td className="align-middle"></td>
                                     <td className="align-middle"></td>
                                     <th className="align-middle">Total</th>
                                     <td className="align-middle">
                                         {
-                                            ((price * quantity) + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
+                                            productDetails.length == 0 ?
+                                                ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
+                                                (productDetails
+                                                    .map(productDetail => productDetail.subTotal)
+                                                    .reduce((prev, next) => prev + next)
+                                                    + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
                                         }
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
-
                 </div>
-
-
                 <div className=" row mt-3 d-flex justify-content-center">
                     <button type="button" className="btn btn-success w-75"
                         onClick={addPackage} >Submit</button>

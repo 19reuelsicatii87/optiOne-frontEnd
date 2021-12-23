@@ -42,7 +42,7 @@ function Header() {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <div className="container">
                         <div>
-                            <a className="navbar-brand" href="/testa">
+                            <a className="navbar-brand" href="/">
                                 <img src="/Images/Logo.jpg" alt="logo" style={{ height: '100px', width: '100px', borderRadius: '50%' }} />
                             </a>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">

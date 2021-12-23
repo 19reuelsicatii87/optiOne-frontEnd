@@ -19,6 +19,7 @@ function OrderPaymentForm(props) {
     // =================================================
     const [paymentOptions, setPaymentOptions] = useState([]);
     const [membershipPackageDetails, setMembershipPackageDetails] = useState([]);
+    const [productDetails, setProductDetails] = useState([]);
     const [orderStatus, setOrderStatus] = useState("");
     const [orderCode, setOrderCode] = useState("ToBeDetermine");
     const [deliveryOption, setDeliveryOption] = useState("ToBeDetermine");
@@ -63,7 +64,10 @@ function OrderPaymentForm(props) {
         setDeliveryOption(responseOrderPackage.data[0].delivery_option);
         setDeliveryFee(responseOrderPackage.data[0].delivery_fee);
         setOrderCode(responseOrderPackage.data[0].order_code);
-        setMembershipPackageDetails(JSON.parse(responseOrderPackage.data[0].membership_package));
+
+        responseOrderPackage.data[0].order_code.length == 15
+            ? setMembershipPackageDetails(JSON.parse(responseOrderPackage.data[0].membership_package))
+            : setProductDetails(JSON.parse(responseOrderPackage.data[0].order_product));
     }
 
 
@@ -94,6 +98,36 @@ function OrderPaymentForm(props) {
 
         let responseUpdatePackage = await axios(requestUpdatePackage);
         navigate('/order/summary/' + responseUpdatePackage.data.order_code)
+
+    }
+
+    async function updateProduct() {
+
+        let formData = new FormData();
+        formData.append('id', packageID);
+        formData.append('order_code', orderCode);
+        formData.append('payment_option', paymentOption);
+        formData.append('payment_fee', paymentFee);
+        formData.append('file_path', filePath);
+        formData.append('total', productDetails.length == 0 ?
+            (deliveryFee * 1) + (paymentFee * 1) :
+            (productDetails
+                .map(productDetail => productDetail.subTotal)
+                .reduce((prev, next) => prev + next)
+                + (deliveryFee * 1) + (paymentFee * 1)));
+
+        let requestUpdateProduct = {
+            method: 'POST',
+            url: process.env.REACT_APP_BACKENDURL + '/api/updateProduct',
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                "Accept": 'application/json'
+            },
+            data: formData
+        }
+
+        let responseUpdateProduct = await axios(requestUpdateProduct);
+        navigate('/order/summary/' + responseUpdateProduct.data.order_code)
 
     }
 
@@ -240,6 +274,55 @@ function OrderPaymentForm(props) {
     }
 
 
+    function OrderSummaryRender() {
+        return (
+
+            orderCode.length == 15
+                ?
+                membershipPackageDetails.map((membershipPackageDetail, index) =>
+                    <tr key={index}>
+                        <td className="align-middle">{membershipPackageDetail.package}</td>
+                        <td className="align-middle">{(membershipPackageDetail.price * 1).toFixed(2)}</td>
+                        <td className="align-middle">{membershipPackageDetail.quantity}</td>
+                        <td className="align-middle">{membershipPackageDetail.subTotal == "" ? "" : (membershipPackageDetail.subTotal * 1).toFixed(2)}</td>
+                    </tr>
+                )
+                :
+                productDetails.map((productDetail, index) =>
+                    <tr key={index}>
+                        <td className="align-middle">{productDetail.product}</td>
+                        <td className="align-middle">{(productDetail.price * 1).toFixed(2)}</td>
+                        <td className="align-middle">{productDetail.quantity}</td>
+                        <td className="align-middle">{productDetail.subTotal == "" ? "" : (productDetail.subTotal).toFixed(2)}</td>
+
+                    </tr>
+                )
+        )
+    }
+
+
+    function TotalOrderSummaryRender() {
+        return (
+
+            orderCode.length == 15
+                ?
+                membershipPackageDetails.length == 0 ?
+                    ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
+                    (membershipPackageDetails
+                        .map(membershipPackageDetail => membershipPackageDetail.subTotal)
+                        .reduce((prev, next) => prev + next)
+                        + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
+                :
+                productDetails.length == 0 ?
+                    ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
+                    (productDetails
+                        .map(productDetail => productDetail.subTotal)
+                        .reduce((prev, next) => prev + next)
+                        + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
+        )
+    }
+
+
 
     return (
         <section id="order-package-form">
@@ -296,14 +379,7 @@ function OrderPaymentForm(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {membershipPackageDetails.map((membershipPackageDetail, index) =>
-                                    <tr key={index}>
-                                        <td className="align-middle">{membershipPackageDetail.package}</td>
-                                        <td className="align-middle">{(membershipPackageDetail.price * 1).toFixed(2)}</td>
-                                        <td className="align-middle">{membershipPackageDetail.quantity}</td>
-                                        <td className="align-middle">{membershipPackageDetail.subTotal == "" ? "" : (membershipPackageDetail.subTotal * 1).toFixed(2)}</td>
-                                    </tr>
-                                )}
+                                {OrderSummaryRender()}
                                 <tr>
                                     <td className="align-middle">
                                         <p className="mb-0">Delivery Fees:</p>
@@ -333,13 +409,7 @@ function OrderPaymentForm(props) {
                                     <td className="align-middle"></td>
                                     <th className="align-middle">Total</th>
                                     <td className="align-middle">
-                                        {membershipPackageDetails.length == 0 ?
-                                            ((deliveryFee * 1) + (paymentFee * 1)).toFixed(2) :
-                                            (membershipPackageDetails
-                                                .map(membershipPackageDetail => membershipPackageDetail.subTotal)
-                                                .reduce((prev, next) => prev + next)
-                                                + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
-                                        }
+                                        {TotalOrderSummaryRender()}
                                     </td>
                                 </tr>
                             </tbody>
@@ -348,7 +418,7 @@ function OrderPaymentForm(props) {
                 </div>
                 <div className=" row mt-3 d-flex justify-content-center">
                     <button type="button" className="btn btn-success w-75"
-                        onClick={updatePackage}>Pay Now!</button>
+                        onClick={orderCode.length == 15 ? updatePackage : updateProduct}>Pay Now!</button>
                 </div>
             </div>
         </section>

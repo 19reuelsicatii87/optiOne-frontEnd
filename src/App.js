@@ -14,6 +14,7 @@ import BlogContentPrepReco from './Pages/BlogContentPrepReco';
 import BlogContentBenefits from './Pages/BlogContentBenefits';
 import BlogContentPsoriasis from './Pages/BlogContentPsoriasis';
 import BlogContentGlandCancer from './Pages/BlogContentGlandCancer';
+import NotFound from './Pages/NotFound';
 import DRegistration from './Pages/DRegistration';
 
 
@@ -56,6 +57,7 @@ function App() {
           {/* Unprotected and root Routes */}
           {/* ============================*/}
           <Route path='/' element={<Home />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
     </div>
