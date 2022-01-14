@@ -14,8 +14,18 @@ import BlogContentPrepReco from './Pages/BlogContentPrepReco';
 import BlogContentBenefits from './Pages/BlogContentBenefits';
 import BlogContentPsoriasis from './Pages/BlogContentPsoriasis';
 import BlogContentGlandCancer from './Pages/BlogContentGlandCancer';
+import NotFoundDashboard from './Pages/NotFoundDashboard';
 import NotFound from './Pages/NotFound';
+import Protected from './Pages/Protected';
 import DRegistration from './Pages/DRegistration';
+import DLogin from './Pages/DLogin';
+import DListProduct from './Pages/DListProduct';
+import DViewProduct from './Pages/DViewProduct';
+import DListLead from './Pages/DListLead';
+import DViewLead from './Pages/DViewLead';
+import DListPackage from './Pages/DListPackage';
+import DViewPackage from './Pages/DViewPackage';
+
 
 
 function App() {
@@ -28,10 +38,18 @@ function App() {
         <Routes>
 
           {/* Protected Routes */}
+          {/* ============================*/}          
+          <Route path="/dashboard/listLead" element={<Protected cmp={DListLead} />} />
+          <Route path="/dashboard/viewLead/:id" element={<Protected cmp={DViewLead} />} />
+          <Route path="/dashboard/listProduct" element={<Protected cmp={DListProduct} />} />
+          <Route path="/dashboard/viewProduct/:id" element={<Protected cmp={DViewProduct} />} />
+          <Route path="/dashboard/listPackage" element={<Protected cmp={DListPackage} />} />
+          <Route path="/dashboard/viewPackage/:id" element={<Protected cmp={DViewPackage} />} />
+     
+
+          {/* Unprotected Routes - Dashboard Page*/}
           {/* ============================*/}
-          {/* <Route path="/dashboard/addProduct">
-            <Protected cmp={AddProduct} />
-          </Route> */}
+          <Route path='/dashboard/login' element={<DLogin />} />
 
 
           {/* Unprotected Routes - Business Page*/}
@@ -40,9 +58,9 @@ function App() {
           <Route path='/membership' element={<Memership />} />
           <Route path='/membership/online-business-presentation' element={<OnlineBusinessPresentation />} />
           <Route path='/order/packageform' element={<FormPackage />} />
-          <Route path='/order/productform' element={<FormOrder />} />      
-          <Route path='/order/payment/:order_code' element={<PaymentOrder />} />      
-          <Route path='/order/summary/:order_code' element={<SummaryOrder />} />             
+          <Route path='/order/productform' element={<FormOrder />} />
+          <Route path='/order/payment/:order_code' element={<PaymentOrder />} />
+          <Route path='/order/summary/:order_code' element={<SummaryOrder />} />
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/blogs' element={<BlogOverview />} />
           <Route path='/blogs/preperation-and-recommendation' element={<BlogContentPrepReco />} />
@@ -50,13 +68,12 @@ function App() {
           <Route path='/blogs/gland-cancer' element={<BlogContentGlandCancer />} />
           <Route path='/blogs/psoriasis' element={<BlogContentPsoriasis />} />
 
-          {/* Unprotected Routes - Dashboard Page*/}
-          {/* ============================*/}
-          <Route path='/dashboard/registation' element={<DRegistration />} />
+
 
           {/* Unprotected and root Routes */}
           {/* ============================*/}
           <Route path='/' element={<Home />} />
+          <Route path='/dashboard/*' element={<NotFoundDashboard />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>

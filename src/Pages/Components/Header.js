@@ -31,9 +31,9 @@ function Header() {
                     </div>
                     <div className="col-lg-3 col-md-12 d-flex flex-row my-2">
                         <input className="form-control" type="text" placeholder="Order Tracking Code"
-                        onChange={(e) => setOrderCode(e.target.value)}></input>
+                            onChange={(e) => setOrderCode(e.target.value)}></input>
                         <button className="btn btn-primary mx-1" type="submit"
-                        onClick={trackPackage}>Track</button>
+                            onClick={trackPackage}>Track</button>
                     </div>
                 </div>
             </div>
@@ -83,16 +83,10 @@ function Header() {
                                         <a className="nav-link active" href="/blogs">BLOGS</a>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
-
                     </div>
                 </nav>
-
-
-
-
             </div>
         </section>
     )
