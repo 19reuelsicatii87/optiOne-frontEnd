@@ -23,6 +23,7 @@ function DViewProductComp(props) {
     const [DBPaymentOptions, setDBPaymentOptions] = useState([]);
     const genderOptions = ["Female", "Male"];
     const civilStatusOptions = ["Single", "Married", "Divorced or Seperated", "Widow or Widower"];
+    const orderStatusOptions = ["Order Placed", "Order Payment", "Payment Validation", "Order Sent", "Order Delivered"];
 
     // Add Products States
     // =================================================
@@ -295,6 +296,17 @@ function DViewProductComp(props) {
                                 onChange={(e) => setMemberCode(e.target.value)}></input>
                         </div>
                         <div className="mb-2">
+                            <p className="text-start mb-0 fw-bold">Order Status</p>
+                            <select className="form-control"
+                                onChange={(e) => setOrderStatus(e.target.value)}>
+                                <option defaultValue={orderStatus}>{orderStatus != null ? orderStatus : 'Select Status'}</option>
+                                {orderStatusOptions.map((orderStatusOption) =>
+                                    orderStatusOption != orderStatus
+                                    && <option Value={orderStatusOption}>{orderStatusOption}</option>
+                                )}
+                            </select>
+                        </div>
+                        <div className="mb-2">
                             <p className="text-start mb-0 fw-bold">Products and Bundle</p>
                             <div className="mb-2 p-3" style={{ backgroundColor: "lightgray" }}>
                                 <div className="d-flex flex-row justify-content-between">
@@ -447,8 +459,6 @@ function DViewProductComp(props) {
                                     DBDeliveryOption.delivery_option != deliveryOption
                                     && <option key={DBDeliveryOption.id} Value={[DBDeliveryOption.delivery_option, DBDeliveryOption.delivery_fee]}>{DBDeliveryOption.delivery_option}</option>
                                 )}
-
-
                             </select>
                         </div>
                         <div className="mb-2">

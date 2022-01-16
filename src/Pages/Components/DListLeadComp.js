@@ -135,8 +135,8 @@ function DListLeadComp() {
 
     const SortingContentStatus = () => {
         setSortingStatus(!sortingStatus);
-        setSortingStatus && leads.sort((a, b) => (a.order_status > b.order_status) ? -1 : ((b.order_status > a.order_status) ? 1 : 0));
-        !sortingStatus && leads.sort((a, b) => (a.order_status > b.order_status) ? 1 : ((b.order_status > a.order_status) ? -1 : 0));
+        setSortingStatus && leads.sort((a, b) => (a.status > b.status) ? -1 : ((b.status > a.status) ? 1 : 0));
+        !sortingStatus && leads.sort((a, b) => (a.status > b.status) ? 1 : ((b.status > a.status) ? -1 : 0));
     }
 
     const PaginationContent = () => {
@@ -260,13 +260,19 @@ function DListLeadComp() {
                 <Table hover bordered >
                     <thead>
                         <tr className='bg-primary text-light'>
-                            <th className="text-center align-middle d-none d-sm-block">NAME</th>
+                            <th className="text-center align-middle d-none d-sm-block">
+                                <div className="d-flex justify-content-around">
+                                    NAME
+                                    <i className={sortingFullname ? "bi bi-sort-alpha-up" : "bi bi-sort-alpha-up-alt"}
+                                        onClick={SortingContentFullname}></i>
+                                </div></th>
                             <th className="text-center align-middle">
                                 <div className="d-flex justify-content-around">
                                     EMAIL
                                     <i className={sortingFullname ? "bi bi-sort-alpha-up" : "bi bi-sort-alpha-up-alt"}
-                                        onClick={SortingContentFullname}></i>
-                                </div></th>
+                                        onClick={SortingContentEmail}></i>
+                                </div>
+                            </th>
                             <th className="text-center align-middle d-none d-sm-block">
                                 <div className="d-flex justify-content-around">
                                     MOBILE

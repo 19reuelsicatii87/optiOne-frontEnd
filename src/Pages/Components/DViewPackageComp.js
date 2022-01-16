@@ -23,6 +23,7 @@ function DViewPackageComp(props) {
     const [DBPaymentOptions, setDBPaymentOptions] = useState([]);
     const genderOptions = ["Female", "Male"];
     const civilStatusOptions = ["Single", "Married", "Divorced or Seperated", "Widow or Widower"];
+    const orderStatusOptions = ["Order Placed", "Order Payment", "Payment Validation", "Order Sent", "Order Delivered"];
 
     // Add Packages States
     // =================================================
@@ -257,6 +258,18 @@ function DViewPackageComp(props) {
                     <div className="col-md-6 mb-2">
                         <h4 className="text-start text-primary">Order Details</h4>
                         <div className="mb-2">
+                            <p className="text-start mb-0 fw-bold">Order Status</p>
+                            <select className="form-control"
+                                onChange={(e) => setOrderStatus(e.target.value)}>
+                                <option defaultValue={orderStatus}>{orderStatus != null ? orderStatus : 'Select Status'}</option>
+                                {orderStatusOptions.map((orderStatusOption) =>
+                                    orderStatusOption != orderStatus
+                                    && <option Value={orderStatusOption}>{orderStatusOption}</option>
+                                )}
+                            </select>
+                        </div>
+                        <div className="mb-2">
+                            <p className="text-start mb-0 fw-bold">Membership Package</p>
                             <div className="mb-2 p-3" style={{ backgroundColor: "lightgray" }}>
                                 <div className="d-flex flex-row justify-content-between">
                                     <div className="col-md-7" style={{ paddingRight: "2px" }}>
@@ -341,7 +354,8 @@ function DViewPackageComp(props) {
                                     </select>
                                 </div>
                                 <div className="col-md-8">
-                                    <select className="form-control" onChange={(e) => setCivilStatus(e.target.value)}>
+                                    <select className="form-control"
+                                        onChange={(e) => setCivilStatus(e.target.value)}>
                                         <option defaultValue={civilStatus}>{civilStatus != null ? civilStatus : 'Select Status'}</option>
                                         {civilStatusOptions.map((civilStatusOption) =>
                                             civilStatusOption != civilStatus
