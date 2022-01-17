@@ -25,6 +25,8 @@ import DListLead from './Pages/DListLead';
 import DViewLead from './Pages/DViewLead';
 import DListPackage from './Pages/DListPackage';
 import DViewPackage from './Pages/DViewPackage';
+import DTrackPackage from './Pages/DTrackPackage';
+import DTrackProduct from './Pages/DTrackProduct';
 
 
 
@@ -43,8 +45,10 @@ function App() {
           <Route path="/dashboard/viewLead/:id" element={<Protected cmp={DViewLead} />} />
           <Route path="/dashboard/listProduct" element={<Protected cmp={DListProduct} />} />
           <Route path="/dashboard/viewProduct/:id" element={<Protected cmp={DViewProduct} />} />
+          <Route path="/dashboard/trackProduct" element={<Protected cmp={DTrackProduct} />} />
           <Route path="/dashboard/listPackage" element={<Protected cmp={DListPackage} />} />
           <Route path="/dashboard/viewPackage/:id" element={<Protected cmp={DViewPackage} />} />
+          <Route path="/dashboard/trackPackage" element={<Protected cmp={DTrackPackage} />} />
      
 
           {/* Unprotected Routes - Dashboard Page*/}

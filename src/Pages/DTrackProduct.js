@@ -1,16 +1,16 @@
 import React from 'react'
 import DHeader from './Components/DHeader';
 import Footer from './Components/Footer';
-import DViewPackageComp from './Components/DViewPackageComp';
+import DTrackProductComp from './Components/DTrackProductComp';
 
-function DViewPackage() {
+function DTrackProduct() {
     return (
         <div>
             <DHeader></DHeader>
-            <DViewPackageComp></DViewPackageComp>
+            <DTrackProductComp></DTrackProductComp>
             <Footer></Footer>
         </div>
     )
 }
 
-export default DViewPackage
+export default DTrackProduct

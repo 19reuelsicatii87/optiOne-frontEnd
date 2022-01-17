@@ -40,7 +40,7 @@ function Header() {
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
                                                         <li><Link className="dropdown-item nav-link text-center" to="/dashboard/listPackage">List Package</Link></li>
-                                                        <li><Link className="dropdown-item nav-link text-center" to="/dashboard/searchProduct">Search Package</Link></li>
+                                                        <li><Link className="dropdown-item nav-link text-center" to="/dashboard/trackPackage">Track Package</Link></li>
                                                     </ul>
                                                 </li>
 
@@ -50,7 +50,7 @@ function Header() {
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-end bg-dark" aria-labelledby="navbarDropdown">
                                                         <li><Link className="dropdown-item nav-link text-center" to="/dashboard/listProduct">List Product</Link></li>
-                                                        <li><Link className="dropdown-item nav-link text-center" to="/dashboard/searchProduct">Search Product</Link></li>
+                                                        <li><Link className="dropdown-item nav-link text-center" to="/dashboard/trackProduct">Track Product</Link></li>
                                                     </ul>
                                                 </li>
 
@@ -60,7 +60,7 @@ function Header() {
                                                     </a>
                                                     <ul className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                                                         <li><Link className="dropdown-item nav-link text-center" to="/dashboard/listLead">List Lead</Link></li>
-                                                        <li><Link className="dropdown-item nav-link text-center" to="/dashboard/searchLead">Search Lead</Link></li>
+                                                        {/* <li><Link className="dropdown-item nav-link text-center" to="/dashboard/searchLead">Track Lead</Link></li> */}
                                                     </ul>
                                                 </li>
 
@@ -70,7 +70,6 @@ function Header() {
                                                     </a>
                                                     <ul className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                                                         <li><Link className="dropdown-item nav-link text-center" to="/dashboard/profile/setting">Setting</Link></li>
-                                                        <li><hr className="dropdown-divider"></hr></li>
                                                         <li className="dropdown-item nav-link text-center" onClick={logout}>Logout</li>
                                                     </ul>
                                                 </li>

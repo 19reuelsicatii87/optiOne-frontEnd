@@ -95,7 +95,7 @@ function DLogin() {
                                     </div>
                                     <button type="submit"
                                         className="btn btn-success btn-lg w-100"
-                                        onClick={login}>Submit</button>
+                                        onClick={login}>Login</button>
                                 </div>
 
                             </div>
