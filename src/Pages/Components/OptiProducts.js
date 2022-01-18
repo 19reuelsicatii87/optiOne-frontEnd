@@ -80,7 +80,11 @@ function OptiProducts() {
                     <h3 className="fw-light">Get up to 42.8% discount on all products!</h3>
                     <h3 className="fw-light">Great for Resellers or Personal Use!</h3>
                     <div className="d-flex justify-content-center mt-5">
-                        <button type="button" class="btn btn-success btn-lg w-50">HOW TO BECOME A MEMBER</button>
+                        <a
+                            type="button"
+                            className="btn btn-success btn-lg w-50"
+                            href="/membership"
+                        >HOW TO BECOME A MEMBER</a>
                     </div>
                 </div>
             </div>

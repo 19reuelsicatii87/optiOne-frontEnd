@@ -22,7 +22,7 @@ function Undertake() {
                                 start a business on the internet. You eliminate the risk of investing in inventory.
                                 All you need is time. Learn more about becoming a One Opti distributor by selling
                                 our high-quality health and wellness products!</p>
-                            <a className="d-flex align-contents-start" href="/learn-more">Learn More</a>
+                            <a className="d-flex align-contents-start" href="/membership/online-business-presentation">Learn More</a>
 
                         </div>
                         <div className="col-md-6 py-5">
@@ -34,7 +34,7 @@ function Undertake() {
                                 commissions for every successful sale made while sharing natural health
                                 and wellness with the world!</p>
                             <p>
-                                <a className="d-flex align-contents-start" href="/learn-more">Learn More</a>
+                                <a className="d-flex align-contents-start" href="/membership/online-business-presentation">Learn More</a>
                             </p>
                         </div>
                     </div>
@@ -47,7 +47,11 @@ function Undertake() {
                     <h3 className="fw-light">Get up to 42.8% discount on all products!</h3>
                     <h3 className="fw-light">Great for Resellers or Personal Use!</h3>
                     <div className="d-flex justify-content-center mt-5">
-                        <button type="button" className="btn btn-success btn-lg w-50">HOW TO BECOME A MEMBER</button>
+                        <a
+                            type="button"
+                            className="btn btn-success btn-lg w-50"
+                            href="/membership"
+                        >HOW TO BECOME A MEMBER</a>
                     </div>
                 </div>
             </div>

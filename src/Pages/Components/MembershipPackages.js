@@ -187,7 +187,11 @@ function MembershipPackages() {
                     </div>
                     <div className="row">
                         <div className="d-flex justify-content-center">
-                            <button type="button" className="btn btn-primary btn-lg w-50">SIGN UP FORM</button>
+                            <a
+                                type="button"
+                                className="btn btn-primary btn-lg w-50"
+                                href="/order/packageform"
+                            >SIGN UP FORM</a>
                         </div>
                     </div>
                     <div className="row my-5" >

@@ -18,7 +18,7 @@ function ProductPromotion() {
                             Our innovative, affordable line of health and wellness products can enhance your well-being with
                             the best that nature has to offer.</p>
 
-                        <a href="/learn-more">Learn More</a>
+                        <a href="/products">Learn More</a>
                     </div>
                 </div>
                 <div className="col-md-7 d-flex align-items-center">
