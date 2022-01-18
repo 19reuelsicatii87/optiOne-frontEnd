@@ -58,7 +58,7 @@ function ContactUs() {
                         <div className="d-flex justify-content-center">
                             <i className="bi bi-envelope text-light" style={{ fontSize: "70px" }}></i>
                         </div>
-                        <h1 className="text-center fw-bold text-light">Get in Touch</h1>
+                        <h1 className="text-center fw-bold text-light">Message Us</h1>
                         <p className="text-center fs-5 text-light">We would love to hear from you</p>
                     </div>
                 </div>
@@ -100,7 +100,7 @@ function ContactUs() {
                                 <span className="input-group-text">Message<small style={{ color: "red", paddingLeft: "0.2em" }}>(REQ)</small> </span>
                                 <textarea
                                     className="form-control"
-                                    placeholder="Tell us more about your package or product. Call us on your most immediate and available time."
+                                    placeholder="Drop your message here and we'll call on your most immediate and available time."
                                     rows="6"
                                     onChange={(e) => setMessage(e.target.value)} required>
                                 </textarea>
