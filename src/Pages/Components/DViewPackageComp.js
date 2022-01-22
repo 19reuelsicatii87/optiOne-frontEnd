@@ -255,7 +255,7 @@ function DViewPackageComp(props) {
             <div className="container my-5">
                 <h1 className="text-start text-primary mb-5">Package Form</h1>
                 <div className="row">
-                    <div className="col-md-6 mb-2">
+                    <div className="col-md-5 mb-2">
                         <h4 className="text-start text-primary">Order Details</h4>
                         <div className="mb-2">
                             <p className="text-start mb-0 fw-bold">Order Status</p>
@@ -373,7 +373,7 @@ function DViewPackageComp(props) {
                             <p className="text-start mb-0 text-black-50"><small>Format: YYYY-MM-DD</small></p>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-3 mb-2">
                         <h4 className="text-start text-primary">Address Details</h4>
 
                         <div className="mb-2">
@@ -446,6 +446,15 @@ function DViewPackageComp(props) {
                                     && <option key={DBPaymentOption.id} Value={[DBPaymentOption.payment_option, DBPaymentOption.payment_fee]}>{DBPaymentOption.payment_option}</option>
                                 )}
                             </select>
+                        </div>
+                    </div>
+                    <div className="col-md-4 bg-primary">
+                        <div className="mb-4">
+                            <h4 className="text-start text-white my-3">Payment Slip</h4>
+                            <div className="my-1">
+                                <img src={filePath} className="img-fluid img-thumbnail"
+                                    alt="Payment Slip" style={{ maxHeight: "35em" }}></img>
+                            </div>
                         </div>
                     </div>
                 </div>
