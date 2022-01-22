@@ -63,7 +63,7 @@ function ContactusPopUp() {
                 onHide={() => setModalPopUp(false)}
                 backdrop="static"
                 keyboard={false}>
-                <Modal.Header closeButton style={{borderBottomWidth: "0px"}}></Modal.Header>
+                <Modal.Header closeButton style={{ borderBottomWidth: "0px" }}></Modal.Header>
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-9">
                         <div className="d-flex justify-content-center">
@@ -114,10 +114,6 @@ function ContactusPopUp() {
                                     className="btn btn-success btn-lg w-100 mb-1"
                                     onClick={addLead}
                                 >Subscribe</button>
-                                <button type="submit"
-                                    className="btn btn-primary btn-lg w-100"
-                                    onClick={() => setModalPopUp(false)}
-                                >Close</button>
                             </div>
                         </div>
                     </div>

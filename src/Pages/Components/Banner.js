@@ -7,13 +7,14 @@ function Banner() {
         <section id="Banner" className=" d-flex justify-content-center heroStyling"
             style={{ backgroundImage: `url(/Images/Banner.jpg)`}}>
             <div className="d-flex align-items-center">
-                <div className="d-flex flex-column" style={{color: "darkgreen"}}>
-                    <h1 className="display-5 fw-bold" style={{fontSize: "50px"}}>MALASAKIT ONE OPTI</h1>
-                    <p className="">Welcome to Malasakit One Opti, Independent Distributor at One Opti Lifestyle International.</p>
+                <div className="d-flex flex-column text-success">
+                    <h1 className="display-5 fw-bold" style={{fontSize: "50px"}}>MALASAKIT</h1>
+                    <h1 className="display-5 fw-bold" style={{fontSize: "50px"}}>ONE OPTI</h1>
+                    <p className="mb-0">Welcome to Malasakit One Opti, Independent</p>
+                    <p className="">Distributor at One Opti Lifestyle International.</p>
                     <div className="d-flex justify-content-center">
                         <a
-                        className="btn text-white"
-                        style={{backgroundColor: "darkgreen"}}
+                        className="btn btn-lg btn-success"
                         href='/products'
                         >PRODUCTS</a>
                     </div>

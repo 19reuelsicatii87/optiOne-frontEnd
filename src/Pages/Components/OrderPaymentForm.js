@@ -219,7 +219,7 @@ function OrderPaymentForm(props) {
                             <p className="text-start mb-0 fw-bold">Upload Confimation Slip</p>
                             <input type="file" className="form-control"
                                 onChange={(e) => setFilePath(e.target.files[0])}></input>
-                            <p className="text-start mb-0 text-black-50"><small>Passport, Driver's License, SSS UMID Card, Postal ID, etc</small></p>
+                            <p className="text-start mb-0 text-black-50"><small>Please upload Confirmation Slip here.</small></p>
                         </div>
                     </>
                 )
@@ -244,11 +244,11 @@ function OrderPaymentForm(props) {
                             <p className="text-start mb-0 fw-bold">Upload Deposit Slip</p>
                             <input type="file" className="form-control"
                                 onChange={(e) => setFilePath(e.target.files[0])}></input>
-                            <p className="text-start mb-0 text-black-50"><small>Passport, Driver's License, SSS UMID Card, Postal ID, etc</small></p>
+                            <p className="text-start mb-0 text-black-50"><small>Please upload Confirmation Slip here.</small></p>
                         </div>
                     </>
                 )
-            case 'PayMaya':
+            case 'Pay Maya':
                 return (
                     <>
                         <p className="text-start text-secondary mb-0">
@@ -265,7 +265,7 @@ function OrderPaymentForm(props) {
                             <p className="text-start mb-0 fw-bold">Upload Confimation Slip</p>
                             <input type="file" className="form-control"
                                 onChange={(e) => setFilePath(e.target.files[0])}></input>
-                            <p className="text-start mb-0 text-black-50"><small>Passport, Driver's License, SSS UMID Card, Postal ID, etc</small></p>
+                            <p className="text-start mb-0 text-black-50"><small>Please upload Confirmation Slip here.</small></p>
                         </div>
                     </>
                 )
