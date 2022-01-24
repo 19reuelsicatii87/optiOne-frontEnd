@@ -565,10 +565,10 @@ function DViewProductComp(props) {
                     </div>
                 </div>
                 <div className=" row mt-3 d-flex justify-content-center">
-                    <button type="button" className="btn btn-success btn-lg w-100 mb-1"
+                    <button type="button" className="btn btn-success btn-lg w-75 mb-1"
                         onClick={updateProduct}
                     >Update</button>
-                    <a className='btn btn-info btn-lg w-100'
+                    <a className='btn btn-info w-75'
                         href='/dashboard/listProduct'
                     >Back</a>
                 </div>

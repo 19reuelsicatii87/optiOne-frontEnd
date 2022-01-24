@@ -255,7 +255,7 @@ function DTrackProductComp() {
         <section id="Dashboard-Package-Track">
 
             <div className='container mt-5'>
-                <h1 className="text-start text-primary mb-3">Package Form</h1>
+                <h1 className="text-start text-primary mb-3">Product Form</h1>
                 <div className='row d-flex justify-content-start'>
                     <div className="col-lg-6 ">
                         <InputGroup className="mb-3">
@@ -275,7 +275,7 @@ function DTrackProductComp() {
             </div>
             <div className="container mt-4">
                 <div className="row">
-                    <div className="col-md-6 mb-2">
+                    <div className="col-md-5 mb-2">
                         <h4 className="text-start text-primary">Order Details</h4>
                         <div className="mb-2">
                             <p className="text-start mb-0 fw-bold">Order Status</p>
@@ -393,7 +393,7 @@ function DTrackProductComp() {
                             <p className="text-start mb-0 text-black-50"><small>Format: YYYY-MM-DD</small></p>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-3 mb-2">
                         <h4 className="text-start text-primary">Address Details</h4>
 
                         <div className="mb-2">
@@ -466,6 +466,15 @@ function DTrackProductComp() {
                                     && <option key={DBPaymentOption.id} Value={[DBPaymentOption.payment_option, DBPaymentOption.payment_fee]}>{DBPaymentOption.payment_option}</option>
                                 )}
                             </select>
+                        </div>
+                    </div>
+                    <div className="col-md-4 bg-primary">
+                        <div className="mb-4">
+                            <h4 className="text-start text-white my-3">Payment Slip</h4>
+                            <div className="my-1">
+                                <img src={filePath} className="img-fluid img-thumbnail"
+                                    alt="Payment Slip" style={{ maxHeight: "35em" }}></img>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -546,10 +555,10 @@ function DTrackProductComp() {
                     </div>
                 </div>
                 <div className=" row mt-3 d-flex justify-content-center">
-                    <button type="button" className="btn btn-success btn-lg w-100 mb-1"
+                    <button type="button" className="btn btn-success btn-lg w-75 mb-1"
                         onClick={updatePackage}
                     >Update</button>
-                    <a className='btn btn-info btn-lg w-100'
+                    <a className='btn btn-info w-75'
                         href='/dashboard/listPackage'
                     >Back</a>
                 </div>
