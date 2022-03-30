@@ -27,6 +27,8 @@ import DListPackage from './Pages/DListPackage';
 import DViewPackage from './Pages/DViewPackage';
 import DTrackPackage from './Pages/DTrackPackage';
 import DTrackProduct from './Pages/DTrackProduct';
+import PaymentSuccess from './Pages/PaymentSuccess';
+import PaymentFailed from './Pages/PaymentFailed';
 
 
 
@@ -71,6 +73,8 @@ function App() {
           <Route path='/blogs/health-and-benefits' element={<BlogContentBenefits />} />
           <Route path='/blogs/gland-cancer' element={<BlogContentGlandCancer />} />
           <Route path='/blogs/psoriasis' element={<BlogContentPsoriasis />} />
+          <Route path='/order/payment/success' element={<PaymentSuccess />} />
+          <Route path='/order/payment/failed' element={<PaymentFailed />} />
 
 
 

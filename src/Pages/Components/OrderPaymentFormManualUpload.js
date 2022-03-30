@@ -28,7 +28,6 @@ function OrderPaymentForm(props) {
     const [paymentFee, setPaymentFee] = useState("0.00");
     const [filePath, setFilePath] = useState();
     const [packageID, setPackageID] = useState();
-    const [checkOutURL, setCheckOutURL] = useState();
     const navigate = useNavigate();
 
 
@@ -71,21 +70,14 @@ function OrderPaymentForm(props) {
             : setProductDetails(JSON.parse(responseOrderPackage.data[0].order_product));
     }
 
-    // function updatePaymentOption(e) {
-    //     const [paymentOptionTemp, paymentFeeTemp] = (e.target.value).split(",");
-    //     setPaymentOption(paymentOptionTemp);
-    //     setPaymentFee(paymentFeeTemp);
-    //     orderCode.length == 15 ? updatePackage() : updateProduct();
 
-    // }
-
-    async function updatePackage(paymentOptionTemp, paymentFeeTemp) {
+    async function updatePackage() {
 
         let formData = new FormData();
         formData.append('id', packageID);
         formData.append('order_code', orderCode);
-        formData.append('payment_option', paymentOptionTemp);
-        formData.append('payment_fee', paymentFeeTemp);
+        formData.append('payment_option', paymentOption);
+        formData.append('payment_fee', paymentFee);
         formData.append('file_path', filePath);
         formData.append('total', membershipPackageDetails.length == 0 ?
             (deliveryFee * 1) + (paymentFee * 1) :
@@ -105,17 +97,17 @@ function OrderPaymentForm(props) {
         }
 
         let responseUpdatePackage = await axios(requestUpdatePackage);
-        setCheckOutURL(responseUpdatePackage.data[1].checkout_url);
+        navigate('/order/summary/' + responseUpdatePackage.data.order_code)
 
     }
 
-    async function updateProduct(paymentOptionTemp, paymentFeeTemp) {
+    async function updateProduct() {
 
         let formData = new FormData();
         formData.append('id', packageID);
         formData.append('order_code', orderCode);
-        formData.append('payment_option', paymentOptionTemp);
-        formData.append('payment_fee', paymentFeeTemp);
+        formData.append('payment_option', paymentOption);
+        formData.append('payment_fee', paymentFee);
         formData.append('file_path', filePath);
         formData.append('total', productDetails.length == 0 ?
             (deliveryFee * 1) + (paymentFee * 1) :
@@ -135,9 +127,12 @@ function OrderPaymentForm(props) {
         }
 
         let responseUpdateProduct = await axios(requestUpdateProduct);
-        setCheckOutURL(responseUpdateProduct.data[1].checkout_url);
+        navigate('/order/summary/' + responseUpdateProduct.data.order_code)
 
     }
+
+
+
 
     function orderStatusRender() {
 
@@ -203,6 +198,82 @@ function OrderPaymentForm(props) {
 
     }
 
+
+    function paymentOptionRender() {
+
+        switch (paymentOption) {
+            case 'GCash':
+                return (
+                    <>
+                        <p className="text-start text-secondary mb-0">
+                            <sub> Transfer Payment using details below:
+                                <br></br>
+                                <b>AccountName: </b> Jen M. Sicat
+                                <br></br>
+                                <b>AccountNumber: </b> 09175757160
+                                <br></br>
+                                Ensure to upload screenshot before hitting "Pay Now" button
+                            </sub>
+                        </p>
+                        <div className="my-3">
+                            <p className="text-start mb-0 fw-bold">Upload Confimation Slip</p>
+                            <input type="file" className="form-control"
+                                onChange={(e) => setFilePath(e.target.files[0])}></input>
+                            <p className="text-start mb-0 text-black-50"><small>Please upload Confirmation Slip here.</small></p>
+                        </div>
+                    </>
+                )
+            case 'Bank Transfer':
+                return (
+                    <>
+                        <p className="text-start text-secondary mb-0">
+                            <sub> Transfer Payment using details below:
+                                <br></br>
+                                <b>AccountName: </b> Jen M. Sicat
+                                <br></br>
+                                <b>BDO AccountNumber: </b> 2356-8549-98564
+                                <br></br>
+                                <b>EastWest AccountNumber: </b> 1234-5678-9123
+                                <br></br>
+                                <b>BPI AccountNumber: </b> 03216-8549-8754
+                                <br></br>
+                                Ensure to upload screenshot before hitting "Pay Now" button
+                            </sub>
+                        </p>
+                        <div className="my-3">
+                            <p className="text-start mb-0 fw-bold">Upload Deposit Slip</p>
+                            <input type="file" className="form-control"
+                                onChange={(e) => setFilePath(e.target.files[0])}></input>
+                            <p className="text-start mb-0 text-black-50"><small>Please upload Confirmation Slip here.</small></p>
+                        </div>
+                    </>
+                )
+            case 'Pay Maya':
+                return (
+                    <>
+                        <p className="text-start text-secondary mb-0">
+                            <sub> Transfer Payment using details below:
+                                <br></br>
+                                <b>AccountName: </b> Jen M. Sicat
+                                <br></br>
+                                <b>AccountNumber: </b> 5264-8546-9562-5642
+                                <br></br>
+                                Ensure to upload screenshot before hitting "Pay Now" button
+                            </sub>
+                        </p>
+                        <div className="my-3">
+                            <p className="text-start mb-0 fw-bold">Upload Confimation Slip</p>
+                            <input type="file" className="form-control"
+                                onChange={(e) => setFilePath(e.target.files[0])}></input>
+                            <p className="text-start mb-0 text-black-50"><small>Please upload Confirmation Slip here.</small></p>
+                        </div>
+                    </>
+                )
+        }
+
+    }
+
+
     function OrderSummaryRender() {
         return (
 
@@ -229,6 +300,7 @@ function OrderPaymentForm(props) {
         )
     }
 
+
     function TotalOrderSummaryRender() {
         return (
 
@@ -249,8 +321,6 @@ function OrderPaymentForm(props) {
                         + (deliveryFee * 1) + (paymentFee * 1)).toFixed(2)
         )
     }
-
-
 
 
 
@@ -283,16 +353,19 @@ function OrderPaymentForm(props) {
                                     const [paymentOptionTemp, paymentFeeTemp] = (e.target.value).split(",");
                                     setPaymentOption(paymentOptionTemp);
                                     setPaymentFee(paymentFeeTemp);
-                                    orderCode.length == 15
-                                        ? updatePackage(paymentOptionTemp, paymentFeeTemp)
-                                        : updateProduct(paymentOptionTemp, paymentFeeTemp);
                                 }}>
                                 <option defaultValue>Please select Payment Option...</option>
                                 {paymentOptions.map((paymentOption) =>
                                     <option key={paymentOption.id} value={[paymentOption.payment_option, paymentOption.payment_fee]}>{paymentOption.payment_option}</option>
                                 )}
                             </select>
+
+                            <div>
+                                {paymentOptionRender()}
+
+                            </div>
                         </div>
+
                     </div>
                     <div className="col-md-6 mb-2">
                         <h4 className="text-start text-primary mb-2">Membership Package Summary</h4>
@@ -344,8 +417,8 @@ function OrderPaymentForm(props) {
                     </div>
                 </div>
                 <div className=" row mt-3 d-flex justify-content-center">
-                    <a className={"btn btn-success w-75" + (!checkOutURL ? " disabled" : "")} href={checkOutURL}
-                        disabled={!checkOutURL ? true : false} role="button">Pay Now!</a>
+                    <button type="button" className="btn btn-success w-75"
+                        onClick={orderCode.length == 15 ? updatePackage : updateProduct}>Pay Now!</button>
                 </div>
             </div>
         </section>
