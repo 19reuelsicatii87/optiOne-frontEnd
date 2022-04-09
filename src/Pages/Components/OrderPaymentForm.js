@@ -28,8 +28,22 @@ function OrderPaymentForm(props) {
     const [paymentFee, setPaymentFee] = useState("0.00");
     const [filePath, setFilePath] = useState();
     const [packageID, setPackageID] = useState();
-    const [checkOutURL, setCheckOutURL] = useState();
+    const [checkOutURL, setCheckOutURL] = useState("");
     const navigate = useNavigate();
+
+    const [cardNumber, setCardNumber] = useState();
+    const [expMonth, setExpMonth] = useState();
+    const [expYear, setExpYear] = useState();
+    const [cvc, setCvc] = useState();
+    const [fullname, setFullname] = useState();
+    const [address, setAddress] = useState();
+    const [city, setCity] = useState();
+    const [stateProvince, setStateProvince] = useState();
+    const [country, setCountry] = useState();
+    const [postalCode, setPostalCode] = useState();
+    const [emailAddress, setEmailAddress] = useState();
+    const [phoneNumber, setPhoneNumber] = useState();
+    const [confirmBilling, setConfirmBilling] = useState(false);
 
 
     async function retrievePaymentOptions() {
@@ -79,7 +93,11 @@ function OrderPaymentForm(props) {
 
     // }
 
-    async function updatePackage(paymentOptionTemp, paymentFeeTemp) {
+    async function updatePackageGcashGrabPay(paymentOptionTemp, paymentFeeTemp) {
+
+        // Set empty to disable button
+        // ==============================================
+        setCheckOutURL("");
 
         let formData = new FormData();
         formData.append('id', packageID);
@@ -109,10 +127,13 @@ function OrderPaymentForm(props) {
 
     }
 
-    async function updateProduct(paymentOptionTemp, paymentFeeTemp) {
+    async function updateProductGcashGrabPay(paymentOptionTemp, paymentFeeTemp) {
 
-        let formData = new FormData();
-        formData.append('id', packageID);
+        // Set empty to disable button
+        // ==============================================
+        setCheckOutURL("");
+
+        let formData = new FormData(); formData.append('id', packageID);
         formData.append('order_code', orderCode);
         formData.append('payment_option', paymentOptionTemp);
         formData.append('payment_fee', paymentFeeTemp);
@@ -123,6 +144,7 @@ function OrderPaymentForm(props) {
                 .map(productDetail => productDetail.subTotal)
                 .reduce((prev, next) => prev + next)
                 + (deliveryFee * 1) + (paymentFee * 1)));
+
 
         let requestUpdateProduct = {
             method: 'POST',
@@ -136,6 +158,108 @@ function OrderPaymentForm(props) {
 
         let responseUpdateProduct = await axios(requestUpdateProduct);
         setCheckOutURL(responseUpdateProduct.data[1].checkout_url);
+
+    }
+
+    async function updatePackageCardPayMaya() {
+
+        // Set empty to disable button
+        // ==============================================
+        setCheckOutURL("");
+
+        // Order Package Details
+        // ==============================================
+        let formData = new FormData();
+        formData.append('id', packageID);
+        formData.append('order_code', orderCode);
+        formData.append('payment_option', paymentOption);
+        formData.append('payment_fee', paymentFee);
+        formData.append('file_path', filePath);
+        formData.append('total', membershipPackageDetails.length == 0 ?
+            (deliveryFee * 1) + (paymentFee * 1) :
+            (membershipPackageDetails
+                .map(membershipPackageDetail => membershipPackageDetail.subTotal)
+                .reduce((prev, next) => prev + next)
+                + (deliveryFee * 1) + (paymentFee * 1)));
+
+        // Card Details
+        // ==============================================
+        formData.append('cardNumber', cardNumber);
+        formData.append('expMonth', expMonth);
+        formData.append('expYear', expYear);
+        formData.append('cvc', cvc);
+        formData.append('fullname', fullname);
+        formData.append('address', address);
+        formData.append('city', city);
+        formData.append('stateProvince', stateProvince);
+        formData.append('country', country);
+        formData.append('postalCode', postalCode);
+        formData.append('emailAddress', emailAddress);
+        formData.append('phoneNumber', phoneNumber);
+
+        let requestUpdatePackage = {
+            method: 'POST',
+            url: process.env.REACT_APP_BACKENDURL + '/api/updatePackage',
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                "Accept": 'application/json'
+            },
+            data: formData
+        }
+
+        let responseUpdatePackage = await axios(requestUpdatePackage);
+        setCheckOutURL(responseUpdatePackage.data.billingDetails.transaction.order_code);
+
+    }
+
+    async function updateProductCardPayMaya() {
+
+        // Set empty to disable button
+        // ==============================================
+        setCheckOutURL("");
+
+        // Order Package Details
+        // ==============================================
+        let formData = new FormData();
+        formData.append('id', packageID);
+        formData.append('order_code', orderCode);
+        formData.append('payment_option', paymentOption);
+        formData.append('payment_fee', paymentFee);
+        formData.append('file_path', filePath);
+        formData.append('total', membershipPackageDetails.length == 0 ?
+            (deliveryFee * 1) + (paymentFee * 1) :
+            (membershipPackageDetails
+                .map(membershipPackageDetail => membershipPackageDetail.subTotal)
+                .reduce((prev, next) => prev + next)
+                + (deliveryFee * 1) + (paymentFee * 1)));
+
+        // Card Details
+        // ==============================================
+        formData.append('cardNumber', cardNumber);
+        formData.append('expMonth', expMonth);
+        formData.append('expYear', expYear);
+        formData.append('cvc', cvc);
+        formData.append('fullname', fullname);
+        formData.append('address', address);
+        formData.append('city', city);
+        formData.append('stateProvince', stateProvince);
+        formData.append('country', country);
+        formData.append('postalCode', postalCode);
+        formData.append('emailAddress', emailAddress);
+        formData.append('phoneNumber', phoneNumber);
+
+        let requestUpdatePackage = {
+            method: 'POST',
+            url: process.env.REACT_APP_BACKENDURL + '/api/updateProduct',
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                "Accept": 'application/json'
+            },
+            data: formData
+        }
+
+        let responseUpdatePackage = await axios(requestUpdatePackage);
+        setCheckOutURL(responseUpdatePackage.data[1].checkout_url);
 
     }
 
@@ -250,9 +374,117 @@ function OrderPaymentForm(props) {
         )
     }
 
+    function paymentOptionRender() {
 
+        if (paymentOption == 'PayMaya' || paymentOption == 'Debit or Credit Card') {
+            return (
+                <>
+                    <p className="text-start mb-0 fw-bold">Card Details</p>
+                    <div className="mb-1">
+                        <p className="text-start mb-0"><sub>Card Number</sub></p>
+                        <input type="text" className="form-control"
+                            placeholder="Card Number"
+                            onChange={(e) => setCardNumber(e.target.value)}></input>
+                    </div>
+                    <div className="mb-1">
+                        <p className="text-start mb-0"><sub>Card Expiration & CVC</sub></p>
+                        <div className="d-flex flex-row justify-content-between">
+                            <div className="col-md-4" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="Mon"
+                                    onChange={(e) => setExpMonth(e.target.value)}></input>
+                            </div>
+                            <div className="col-md-4" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="Year"
+                                    onChange={(e) => setExpYear(e.target.value)}></input>
+                            </div>
+                            <div className="col-md-4">
+                                <input type="text" className="form-control"
+                                    placeholder="CVC"
+                                    onChange={(e) => setCvc(e.target.value)}></input>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div className="mb-1">
+                        <p className="text-start mb-0"><sub>Card Billing Statement</sub></p>
+                        <div className="col-md-12 mb-1" style={{ paddingRight: "2px" }}>
+                            <input type="text" className="form-control"
+                                placeholder="FullName"
+                                onChange={(e) => setFullname(e.target.value)}></input>
+                        </div>
+                        <div className="col-md-12 mb-1" style={{ paddingRight: "2px" }}>
+                            <input type="text" className="form-control"
+                                placeholder="Address"
+                                onChange={(e) => setAddress(e.target.value)}></input>
+                        </div>
 
+                        <div className="d-flex flex-row justify-content-between mb-1">
+                            <div className="col-md-6" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="City"
+                                    onChange={(e) => setCity(e.target.value)}></input>
+                            </div>
+                            <div className="col-md-6" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="State or Province"
+                                    onChange={(e) => setStateProvince(e.target.value)}></input>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-row justify-content-between mb-1">
+                            <div className="col-md-8" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="Country"
+                                    onChange={(e) => setCountry(e.target.value)}></input>
+                            </div>
+                            <div className="col-md-4" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="Postal Code"
+                                    onChange={(e) => setPostalCode(e.target.value)}></input>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-row justify-content-between mb-1">
+                            <div className="col-md-6" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="Email Address"
+                                    onChange={(e) => setEmailAddress(e.target.value)}></input>
+                            </div>
+                            <div className="col-md-6" style={{ paddingRight: "2px" }}>
+                                <input type="text" className="form-control"
+                                    placeholder="Phone #"
+                                    onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-2">
+                        <div className="d-flex flex-row justify-content-start mb-1">
+                            <input className="form-check-input"
+                                type="checkbox" checked={confirmBilling}
+                                onChange={(e) => {
+
+                                    // toggle confirmBilling 
+                                    // ====================================
+                                    setConfirmBilling(!confirmBilling)
+
+                                    // calling function if confirmBilling is set
+                                    // =============================================
+                                    if (!confirmBilling) {
+
+                                        orderCode.length == 15
+                                            ? updatePackageCardPayMaya()
+                                            : updateProductCardPayMaya();
+                                    }
+                                }}></input>
+                            <label className="form-check-label mx-2" for="flexCheckDefault">
+                                I confirm provided Billing Details are correct!
+                            </label>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+    }
 
     return (
         <section id="order-package-form">
@@ -283,15 +515,21 @@ function OrderPaymentForm(props) {
                                     const [paymentOptionTemp, paymentFeeTemp] = (e.target.value).split(",");
                                     setPaymentOption(paymentOptionTemp);
                                     setPaymentFee(paymentFeeTemp);
-                                    orderCode.length == 15
-                                        ? updatePackage(paymentOptionTemp, paymentFeeTemp)
-                                        : updateProduct(paymentOptionTemp, paymentFeeTemp);
+                                    if (paymentOptionTemp == 'GCash' || paymentOptionTemp == 'GrabPay') {
+                                        orderCode.length == 15
+                                            ? updatePackageGcashGrabPay(paymentOptionTemp, paymentFeeTemp)
+                                            : updateProductGcashGrabPay(paymentOptionTemp, paymentFeeTemp);
+                                    }
                                 }}>
                                 <option defaultValue>Please select Payment Option...</option>
                                 {paymentOptions.map((paymentOption) =>
                                     <option key={paymentOption.id} value={[paymentOption.payment_option, paymentOption.payment_fee]}>{paymentOption.payment_option}</option>
                                 )}
                             </select>
+                            <div className='container mt-2'>
+
+                                {paymentOptionRender()}
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6 mb-2">

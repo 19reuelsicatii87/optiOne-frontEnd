@@ -6,7 +6,7 @@ function NotFound() {
     return (
         <div>
             <Header></Header>
-            <div section="404-Not-Found">
+            <section id="404-Not-Found">
                 <div className='container'>
                     <div className=" mt-5">
                         <h1 className='text-primary fw-bold mb-1'>Oops! - Error 404</h1>
@@ -29,7 +29,7 @@ function NotFound() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             <Footer></Footer>
         </div>
     )
