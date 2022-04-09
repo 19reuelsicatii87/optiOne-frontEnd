@@ -123,7 +123,7 @@ function OrderPaymentForm(props) {
         }
 
         let responseUpdatePackage = await axios(requestUpdatePackage);
-        setCheckOutURL(responseUpdatePackage.data[1].checkout_url);
+        setCheckOutURL(responseUpdatePackage.data.billingDetails.checkout_url);
 
     }
 
@@ -157,7 +157,7 @@ function OrderPaymentForm(props) {
         }
 
         let responseUpdateProduct = await axios(requestUpdateProduct);
-        setCheckOutURL(responseUpdateProduct.data[1].checkout_url);
+        setCheckOutURL(responseUpdateProduct.data.billingDetails.checkout_url);
 
     }
 
@@ -208,7 +208,7 @@ function OrderPaymentForm(props) {
         }
 
         let responseUpdatePackage = await axios(requestUpdatePackage);
-        setCheckOutURL(responseUpdatePackage.data.billingDetails.transaction.order_code);
+        setCheckOutURL(responseUpdatePackage.data.billingDetails.checkout_url);
 
     }
 
@@ -259,7 +259,7 @@ function OrderPaymentForm(props) {
         }
 
         let responseUpdatePackage = await axios(requestUpdatePackage);
-        setCheckOutURL(responseUpdatePackage.data[1].checkout_url);
+        setCheckOutURL(responseUpdatePackage.data.billingDetails.checkout_url);
 
     }
 
