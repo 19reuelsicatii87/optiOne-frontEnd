@@ -226,10 +226,10 @@ function OrderPaymentForm(props) {
         formData.append('payment_option', paymentOption);
         formData.append('payment_fee', paymentFee);
         formData.append('file_path', filePath);
-        formData.append('total', membershipPackageDetails.length == 0 ?
+        formData.append('total', productDetails.length == 0 ?
             (deliveryFee * 1) + (paymentFee * 1) :
-            (membershipPackageDetails
-                .map(membershipPackageDetail => membershipPackageDetail.subTotal)
+            (productDetails
+                .map(productDetail => productDetail.subTotal)
                 .reduce((prev, next) => prev + next)
                 + (deliveryFee * 1) + (paymentFee * 1)));
 
