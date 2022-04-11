@@ -214,7 +214,7 @@ function OrderPaymentForm(props) {
 
     async function updateProductCardPayMaya() {
 
-        // Set empty to disable button
+        // Reset textfield and button
         // ==============================================
         setCheckOutURL("");
 
@@ -434,9 +434,11 @@ function OrderPaymentForm(props) {
                         </div>
                         <div className="d-flex flex-row justify-content-between mb-1">
                             <div className="col-md-8" style={{ paddingRight: "2px" }}>
-                                <input type="text" className="form-control"
-                                    placeholder="Country"
-                                    onChange={(e) => setCountry(e.target.value)}></input>
+                                <select className="form-select" aria-label="Country"
+                                    onChange={(e) => setCountry(e.target.value)}>
+                                    <option value="">Country</option>
+                                    <option value="PH">Philippines</option>
+                                </select>
                             </div>
                             <div className="col-md-4" style={{ paddingRight: "2px" }}>
                                 <input type="text" className="form-control"
@@ -461,6 +463,7 @@ function OrderPaymentForm(props) {
                         <div className="d-flex flex-row justify-content-start mb-1">
                             <input className="form-check-input"
                                 type="checkbox" checked={confirmBilling}
+                                disabled={!cardNumber || !expMonth || !expYear || !cvc || !country || !emailAddress ? true : false}
                                 onChange={(e) => {
 
                                     // toggle confirmBilling 
@@ -476,7 +479,7 @@ function OrderPaymentForm(props) {
                                             : updateProductCardPayMaya();
                                     }
                                 }}></input>
-                            <label className="form-check-label mx-2" for="flexCheckDefault">
+                            <label className="form-check-label mx-2" htmlFor="flexCheckDefault">
                                 I confirm provided Billing Details are correct!
                             </label>
                         </div>
@@ -520,6 +523,9 @@ function OrderPaymentForm(props) {
                                             ? updatePackageGcashGrabPay(paymentOptionTemp, paymentFeeTemp)
                                             : updateProductGcashGrabPay(paymentOptionTemp, paymentFeeTemp);
                                     }
+                                    else {
+                                        setConfirmBilling(false);
+                                    }
                                 }}>
                                 <option defaultValue>Please select Payment Option...</option>
                                 {paymentOptions.map((paymentOption) =>
@@ -527,7 +533,6 @@ function OrderPaymentForm(props) {
                                 )}
                             </select>
                             <div className='container mt-2'>
-
                                 {paymentOptionRender()}
                             </div>
                         </div>
